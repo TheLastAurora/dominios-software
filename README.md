@@ -1,3 +1,3 @@
 # Projeto de Domínios de Software
 
-## Sistema web para apoiar o processamento de prova objetiva
+## Sistema de Avaliação de Provas Objetivas (SAPO)
