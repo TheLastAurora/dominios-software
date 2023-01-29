@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int         @id         @default(autoincrement())
+  name          String      @db.VarChar(120)
+  login         String      @unique @db.VarChar(20)
+  password      String      @db.VarChar(32)
+  gabarito      Gabarito[]
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_user")
+}
+
+model Concurso {
+  id            Int         @id         @default(autoincrement())
+  name          String      @db.VarChar(120)
+  role          String      @db.VarChar(255)
+  vacancies     Int
+  gabarito      Gabarito[]
+  concludedAt   DateTime
+  candidatos    CandidatoConcurso[]
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_concurso")
+}
+
+model CandidatoConcurso {
+  id            Int         @id         @default(autoincrement())
+  candidatoId   Int
+  candidato     Candidato               @relation(fields: [candidatoId], references: [id])
+  concursoId    Int
+  concurso      Concurso                @relation(fields: [concursoId], references: [id])
+  score         Int
+  type          String      @db.Char(1)
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_candidato_concurso")
+}
+
+model Candidato {
+  id            Int         @id         @default(autoincrement())
+  name          String      @db.VarChar(120)
+  socialName    String      @db.VarChar(120)
+  taxId         String      @db.VarChar(15)
+  documentId    String      @db.VarChar(8)
+  issuedAt      DateTime
+  gender        Gender
+  mothersName   String      @db.VarChar(120)
+  fathersName   String      @db.VarChar(120)
+  birthDate     DateTime
+  birthPlace    String      @db.VarChar(30)
+  email         String      @db.VarChar(40)
+  telephone     PhoneNumber[]
+  addressId     Int?        @unique
+  address       Address?                @relation(fields: [addressId], references: [id])
+  concurso      CandidatoConcurso[]
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_candidato")
+}
+
+model PhoneNumber {
+  id            Int         @id         @default(autoincrement())
+  candidato     Candidato               @relation(fields: [candidatoId], references: [id])
+  candidatoId   Int
+  telephone     String      @db.VarChar(15)
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_phone_number")
+}
+
+model Address {
+  id            Int         @id         @default(autoincrement())
+  candidato     Candidato?
+  cep           String      @db.VarChar(12)
+  uf            UFs
+  city          String      @db.VarChar(40)
+  neighborhood  String      @db.VarChar(40)
+  street        String      @db.VarChar(40)
+  number        String      @db.VarChar(5)
+  complement    String      @db.VarChar(60)
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_address")
+}
+
+model Gabarito {
+  id            Int         @id         @default(autoincrement())
+  concursoId    Int
+  concurso      Concurso                @relation(fields: [concursoId], references: [id])
+  authorId      Int
+  author        User                    @relation(fields: [authorId], references: [id])
+  type          String      @db.Char(1)
+  answers       Json
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+
+  @@map("tb_gabarito")
+}
+
+enum Gender {
+  M
+  F
+  PND
+}
+
+enum UFs {
+  AM
+  AL
+  AC
+  AP
+  BA
+  PA
+  MT
+  MG
+  MS
+  GO
+  MA
+  RS
+  TO
+  PI
+  SP
+  RO
+  RR
+  PR
+  CE
+  PE
+  SC
+  PB
+  RN
+  ES
+  RJ
+  SE
+  DF
+}
