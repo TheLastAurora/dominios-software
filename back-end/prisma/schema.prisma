@@ -39,9 +39,9 @@ model Concurso {
 model CandidatoConcurso {
   id            Int         @id         @default(autoincrement())
   candidatoId   Int
-  candidato     Candidato               @relation(fields: [candidatoId], references: [id])
+  candidato     Candidato               @relation(fields: [candidatoId], references: [id], onDelete: Cascade)
   concursoId    Int
-  concurso      Concurso                @relation(fields: [concursoId], references: [id])
+  concurso      Concurso                @relation(fields: [concursoId], references: [id], onDelete: Cascade)
   score         Int
   type          String      @db.Char(1)
   createdAt     DateTime                @default(now())
@@ -54,15 +54,15 @@ model Candidato {
   id            Int         @id         @default(autoincrement())
   name          String      @db.VarChar(120)
   socialName    String      @db.VarChar(120)
-  taxId         String      @db.VarChar(15)
-  documentId    String      @db.VarChar(8)
+  taxId         String      @unique @db.VarChar(15)
+  documentId    String      @unique @db.VarChar(8)
   issuedAt      DateTime
   gender        Gender
   mothersName   String      @db.VarChar(120)
   fathersName   String      @db.VarChar(120)
   birthDate     DateTime
   birthPlace    String      @db.VarChar(30)
-  email         String      @db.VarChar(40)
+  email         String      @unique @db.VarChar(40)
   telephone     PhoneNumber[]
   addressId     Int?        @unique
   address       Address?                @relation(fields: [addressId], references: [id])
@@ -75,7 +75,7 @@ model Candidato {
 
 model PhoneNumber {
   id            Int         @id         @default(autoincrement())
-  candidato     Candidato               @relation(fields: [candidatoId], references: [id])
+  candidato     Candidato               @relation(fields: [candidatoId], references: [id], onDelete: Cascade)
   candidatoId   Int
   telephone     String      @db.VarChar(15)
   createdAt     DateTime                @default(now())
@@ -103,7 +103,7 @@ model Address {
 model Gabarito {
   id            Int         @id         @default(autoincrement())
   concursoId    Int
-  concurso      Concurso                @relation(fields: [concursoId], references: [id])
+  concurso      Concurso                @relation(fields: [concursoId], references: [id], onDelete: Cascade)
   authorId      Int
   author        User                    @relation(fields: [authorId], references: [id])
   type          String      @db.Char(1)

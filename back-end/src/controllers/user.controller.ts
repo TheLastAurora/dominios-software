@@ -28,8 +28,6 @@ class UserController {
     public async read(req: Request, res: Response): Promise<Response>{
         try{
             const id: number = Number(req.params.id);
-            if(!id)
-                return res.status(400).json({message: 'User ID not provided'});
             const user = await prisma.user.findUnique({
                 where:{
                     id: id,
@@ -46,8 +44,6 @@ class UserController {
     public async update(req: Request, res: Response): Promise<Response>{
         try{
             const id: number = Number(req.params.id);
-            if(!id)
-                return res.status(400).json({message: 'User ID not provided'});
             const user: any = await prisma.user.findUnique({
                 where: {
                     id: id,
@@ -61,7 +57,7 @@ class UserController {
                     login: userData.login,
                 },
             });
-            if(userWithLogin)
+            if(userWithLogin && userWithLogin.login != userData.login)
                 return res.status(401).json({message: 'User login already taken'});
             userData.password = encrypt.hash(userData.password);
             await prisma.user.update({
@@ -79,8 +75,6 @@ class UserController {
     public async delete(req: Request, res: Response): Promise<Response>{
         try {
             const id: number = Number(req.params.id);
-            if(!id)
-                return res.status(400).json({message: 'User ID not provided'});
             const user: any = await prisma.user.findUnique({
                 where: {
                     id: id,
