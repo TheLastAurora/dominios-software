@@ -14,7 +14,7 @@ model User {
   id            Int         @id         @default(autoincrement())
   name          String      @db.VarChar(120)
   login         String      @unique @db.VarChar(20)
-  password      String      @db.VarChar(32)
+  password      String      @db.VarChar(60)
   gabarito      Gabarito[]
   createdAt     DateTime                @default(now())
   updatedAt     DateTime                @updatedAt

@@ -1,6 +1,7 @@
 import prisma from "./../database/prisma";
 import { Request, Response } from "express";
 import { User } from "../models/user.model";
+import encrypt from "../functions/encrypt";
 
 class UserController {
 
@@ -14,6 +15,7 @@ class UserController {
             });
             if(userExists)
                 return res.status(401).json({message: 'User login already taken'});
+            user.password = encrypt.hash(user.password);
             await prisma.user.create({
                 data: user,
             });
@@ -61,6 +63,7 @@ class UserController {
             });
             if(userWithLogin)
                 return res.status(401).json({message: 'User login already taken'});
+            userData.password = encrypt.hash(userData.password);
             await prisma.user.update({
                 where: {
                     id: id
