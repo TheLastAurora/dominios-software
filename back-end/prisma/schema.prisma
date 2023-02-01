@@ -13,12 +13,12 @@ datasource db {
 model Candidato {
   id              Int      @id @default(autoincrement())
   nome            String   @unique
-  rg              String   @unique
   cpf             String   @unique
   genero          Genero
   nome_mae        String
   nome_pai        String
   data_nascimento DateTime
+  rg              String   @unique
   data_expedicao  DateTime
   logradouro      String
   numero          String
@@ -28,7 +28,7 @@ model Candidato {
   cod_municipio   String
   uf              Uf
   email           String
-  telefone        String?
+  telefone        String
   concursoID      Int
   concurso        Concurso @relation(fields: [concursoID], references: [id], onDelete: Cascade)
   nota            Int
@@ -45,8 +45,8 @@ model Concurso {
   homologacao DateTime
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  gabarito    Gabarito[]
-  Candidato   Candidato[]
+  gabaritos   Gabarito[]
+  candidatos  Candidato[]
 }
 
 model Gabarito {
@@ -64,7 +64,7 @@ model Gabarito {
 model User {
   id        Int        @id @default(autoincrement())
   nome      String
-  login     String
+  login     String     @unique
   senha     String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt

@@ -9,45 +9,20 @@ class CandidatoController {
             const candidato: Candidato = req.body;
             const existByTaxId: any = await prisma.candidato.findUnique({
                 where: {
-                    taxId: candidato.taxId
+                    cpf: candidato.cpf,
                 },
             });
             if(existByTaxId)
                 return res.status(400).json({message: 'Candidato Tax ID already registered'});
             const existByDocumentId: any = await prisma.candidato.findUnique({
                 where: {
-                    documentId: candidato.documentId
+                    rg: candidato.rg,
                 },
             });
             if(existByDocumentId)
                 return res.status(400).json({message: 'Candidato Document ID already registered'});
-            const address = await prisma.address.create({
-                data: candidato.address
-            });
             await prisma.candidato.create({
-                data: {
-                    name: candidato.name,
-                    socialName: candidato.socialName,
-                    taxId: candidato.taxId,
-                    documentId: candidato.documentId,
-                    issuedAt: candidato.documentId,
-                    gender: candidato.gender,
-                    mothersName: candidato.mothersName,
-                    fathersName: candidato.fathersName,
-                    birthDate: candidato.birthDate,
-                    birthPlace: candidato.birthPlace,
-                    email: candidato.email,
-                    telephone: {
-                        createMany: {
-                            data: candidato.telephone
-                        },
-                    },
-                    address: {
-                        connect: {
-                            id: address.id
-                        }
-                    }
-                }
+                data: candidato
             });
             return res.status(201).json({message: 'Candidato created'});
         } catch (error) {
@@ -84,35 +59,23 @@ class CandidatoController {
             const candidatoData: Candidato = req.body;
             const existByTaxId: any = await prisma.candidato.findUnique({
                 where: {
-                    taxId: candidatoData.taxId
+                    cpf: candidatoData.cpf,
                 },
             });
-            if(existByTaxId && existByTaxId.taxId != candidatoData.taxId)
+            if(existByTaxId && existByTaxId.cpf != candidatoData.cpf)
                 return res.status(400).json({message: 'Candidato Tax ID already registered'});
             const existByDocumentId: any = await prisma.candidato.findUnique({
                 where: {
-                    documentId: candidatoData.documentId
+                    rg: candidatoData.rg,
                 },
             });
-            if(existByDocumentId && existByDocumentId.documentId != candidatoData.documentId)
+            if(existByDocumentId && existByDocumentId.rg != candidatoData.rg)
                 return res.status(400).json({message: 'Candidato Document ID already registered'});
             await prisma.candidato.update({
                 where: {
                     id: id,
                 },
-                data: {
-                    name: candidatoData.name,
-                    socialName: candidatoData.socialName,
-                    taxId: candidatoData.taxId,
-                    documentId: candidatoData.documentId,
-                    issuedAt: candidatoData.documentId,
-                    gender: candidatoData.gender,
-                    mothersName: candidatoData.mothersName,
-                    fathersName: candidatoData.fathersName,
-                    birthDate: candidatoData.birthDate,
-                    birthPlace: candidatoData.birthPlace,
-                    email: candidatoData.email
-                }
+                data: candidatoData
             });
             return res.status(200).json({message: 'Candidato updated'});
         } catch (error) {

@@ -1,18 +1,23 @@
+import { Candidato } from './candidato.model';
+import { User } from './user.model';
 export interface Gabarito {
     id?: number,
-    type: string,
-    answers: JSON,
+    tipo: string,
+    respostas: JSON,
+    autor: User,
     createdAt?: Date,
     updatedAt?: Date
 }
 
 export interface Concurso {
     id?: number,
-    name: string,
-    role: string,
-    vacancies: number,
-    gabaritos?: Gabarito,
-    concludedAt: Date,
+    nome: string,
+    cargo: string,
+    vagas_ac: number,
+    vagas_pd: number,
+    homologacao: Date,
+    candidato?: Candidato[],
+    gabaritos?: Gabarito[],
     createdAt?: Date,
     updatedAt?: Date
 }

@@ -1,40 +1,26 @@
-import { Gender, UFs } from './../../node_modules/.prisma/client/index.d';
-
-interface PhoneNumber {
-    id?: number,
-    telephone: string,
-    createdAt?: Date,
-    updatedAt?: Date
-}
-
-interface Address {
-    id?: number,
-    cep: string,
-    uf: UFs,
-    city: string,
-    neighborhood: string,
-    street: string,
-    number: string,
-    complement: string,
-    createdAt?: Date,
-    updatedAt?: Date
-}
+import { Genero, Uf } from './../../node_modules/.prisma/client/index.d';
 
 export interface Candidato {
     id?: number,
-    name: string,
-    socialName: string,
-    taxId: string,
-    documentId: string,
-    issuedAt: Date,
-    gender: Gender,
-    mothersName: string,
-    fathersName: string,
-    birthDate: Date,
-    birthPlace: string,
+    nome: string,
+    cpf: string,
+    genero: Genero,
+    nome_mae: string,
+    nome_pai: string,
+    data_nascimento: Date,
+    rg: string,
+    data_expedicao,
+    logradouro: string,
+    numero: string,
+    complemento: string,
+    bairro: string,
+    cep: string,
+    cod_municipio: string,
+    uf: Uf,
     email: string,
-    telephone: PhoneNumber[],
-    address: Address,
+    telefone: string,
+    nota: number,
+    concursoID: number,
     createdAt?: Date,
     updatedAt?: Date
 }
