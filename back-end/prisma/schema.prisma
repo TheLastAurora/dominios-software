@@ -11,116 +11,92 @@ datasource db {
 }
 
 model User {
-  id            Int         @id         @default(autoincrement())
-  name          String      @db.VarChar(120)
-  login         String      @unique @db.VarChar(20)
-  password      String      @db.VarChar(60)
-  gabarito      Gabarito[]
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
+  id        Int        @id @default(autoincrement())
+  nome      String     @db.VarChar(120)
+  login     String     @unique @db.VarChar(20)
+  senha     String     @db.VarChar(60)
+  gabarito  Gabarito[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   @@map("tb_user")
 }
 
 model Concurso {
-  id            Int         @id         @default(autoincrement())
-  name          String      @db.VarChar(120)
-  role          String      @db.VarChar(255)
-  vacancies     Int
-  gabarito      Gabarito[]
-  concludedAt   DateTime
-  candidatos    CandidatoConcurso[]
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
+  id          Int                 @id @default(autoincrement())
+  nome        String              @db.VarChar(120)
+  cargo       String              @db.VarChar(255)
+  vagas_ac    Int
+  vagas_pd    Int
+  gabarito    Gabarito[]
+  candidatos  CandidatoConcurso[]
+  homologacao DateTime
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
 
   @@map("tb_concurso")
 }
 
-model CandidatoConcurso {
-  id            Int         @id         @default(autoincrement())
-  candidatoId   Int
-  candidato     Candidato               @relation(fields: [candidatoId], references: [id], onDelete: Cascade)
-  concursoId    Int
-  concurso      Concurso                @relation(fields: [concursoId], references: [id], onDelete: Cascade)
-  score         Int
-  type          String      @db.Char(1)
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
-
-  @@map("tb_candidato_concurso")
-}
-
 model Candidato {
-  id            Int         @id         @default(autoincrement())
-  name          String      @db.VarChar(120)
-  socialName    String      @db.VarChar(120)
-  taxId         String      @unique @db.VarChar(15)
-  documentId    String      @unique @db.VarChar(8)
-  issuedAt      DateTime
-  gender        Gender
-  mothersName   String      @db.VarChar(120)
-  fathersName   String      @db.VarChar(120)
-  birthDate     DateTime
-  birthPlace    String      @db.VarChar(30)
-  email         String      @unique @db.VarChar(40)
-  telephone     PhoneNumber[]
-  addressId     Int?        @unique
-  address       Address?                @relation(fields: [addressId], references: [id])
-  concurso      CandidatoConcurso[]
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
+  id              Int                 @id @default(autoincrement())
+  nome            String              @db.VarChar(120)
+  rg              String              @unique @db.VarChar(15)
+  cpf             String              @unique @db.VarChar(8)
+  genero          Gender
+  nome_mae        String              @db.VarChar(120)
+  nome_pai        String              @db.VarChar(120)
+  data_nascimento DateTime
+  data_expedicao  DateTime
+  logradouro      String              @db.VarChar(40)
+  numero          String              @db.VarChar(8)
+  complemento     String              @db.VarChar(120)
+  bairro          String              @db.VarChar(80)
+  cep             String              @db.VarChar(12)
+  cod_municipio   String              @db.VarChar(12)
+  uf              UF
+  email           String              @unique @db.VarChar(40)
+  telefone        String              @db.VarChar(15)
+  concurso        CandidatoConcurso[]
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
 
   @@map("tb_candidato")
 }
 
-model PhoneNumber {
-  id            Int         @id         @default(autoincrement())
-  candidato     Candidato               @relation(fields: [candidatoId], references: [id], onDelete: Cascade)
-  candidatoId   Int
-  telephone     String      @db.VarChar(15)
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
-
-  @@map("tb_phone_number")
-}
-
-model Address {
-  id            Int         @id         @default(autoincrement())
-  candidato     Candidato?
-  cep           String      @db.VarChar(12)
-  uf            UFs
-  city          String      @db.VarChar(40)
-  neighborhood  String      @db.VarChar(40)
-  street        String      @db.VarChar(40)
-  number        String      @db.VarChar(5)
-  complement    String      @db.VarChar(60)
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
-
-  @@map("tb_address")
-}
-
 model Gabarito {
-  id            Int         @id         @default(autoincrement())
-  concursoId    Int
-  concurso      Concurso                @relation(fields: [concursoId], references: [id], onDelete: Cascade)
-  authorId      Int
-  author        User                    @relation(fields: [authorId], references: [id])
-  type          String      @db.Char(1)
-  answers       Json
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
+  id         Int      @id @default(autoincrement())
+  concursoId Int
+  concurso   Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  tipo       String   @db.Char(1)
+  respostas  Json
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("tb_gabarito")
+}
+
+model CandidatoConcurso {
+  id          Int       @id @default(autoincrement())
+  candidatoID Int
+  candidato   Candidato @relation(fields: [candidatoID], references: [id], onDelete: Cascade)
+  concursoID  Int
+  concurso    Concurso  @relation(fields: [concursoID], references: [id], onDelete: Cascade)
+  nota        Int
+  tipo        String    @db.Char(1)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("tb_candidato_concurso")
 }
 
 enum Gender {
   M
   F
-  PND
 }
 
-enum UFs {
+enum UF {
   AM
   AL
   AC
