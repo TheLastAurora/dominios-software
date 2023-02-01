@@ -10,57 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int        @id @default(autoincrement())
-  nome      String     @db.VarChar(120)
-  login     String     @unique @db.VarChar(20)
-  senha     String     @db.VarChar(60)
-  gabarito  Gabarito[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-
-  @@map("tb_user")
+model Candidato {
+  id              Int      @id @default(autoincrement())
+  nome            String   @unique
+  rg              String   @unique
+  cpf             String   @unique
+  genero          Genero
+  nome_mae        String
+  nome_pai        String
+  data_nascimento DateTime
+  data_expedicao  DateTime
+  logradouro      String
+  numero          String
+  complemento     String
+  bairro          String
+  cep             String
+  cod_municipio   String
+  uf              Uf
+  email           String
+  telefone        String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Concurso {
-  id          Int                 @id @default(autoincrement())
-  nome        String              @db.VarChar(120)
-  cargo       String              @db.VarChar(255)
+  id          Int        @id @default(autoincrement())
+  nome        String
+  cargo       String
   vagas_ac    Int
   vagas_pd    Int
-  gabarito    Gabarito[]
-  candidatos  CandidatoConcurso[]
   homologacao DateTime
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-
-  @@map("tb_concurso")
-}
-
-model Candidato {
-  id              Int                 @id @default(autoincrement())
-  nome            String              @db.VarChar(120)
-  rg              String              @unique @db.VarChar(15)
-  cpf             String              @unique @db.VarChar(8)
-  genero          Gender
-  nome_mae        String              @db.VarChar(120)
-  nome_pai        String              @db.VarChar(120)
-  data_nascimento DateTime
-  data_expedicao  DateTime
-  logradouro      String              @db.VarChar(40)
-  numero          String              @db.VarChar(8)
-  complemento     String              @db.VarChar(120)
-  bairro          String              @db.VarChar(80)
-  cep             String              @db.VarChar(12)
-  cod_municipio   String              @db.VarChar(12)
-  uf              UF
-  email           String              @unique @db.VarChar(40)
-  telefone        String              @db.VarChar(15)
-  concurso        CandidatoConcurso[]
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-
-  @@map("tb_candidato")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  gabarito    Gabarito[]
 }
 
 model Gabarito {
@@ -73,55 +55,49 @@ model Gabarito {
   respostas  Json
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-
-  @@map("tb_gabarito")
 }
 
-model CandidatoConcurso {
-  id          Int       @id @default(autoincrement())
-  candidatoID Int
-  candidato   Candidato @relation(fields: [candidatoID], references: [id], onDelete: Cascade)
-  concursoID  Int
-  concurso    Concurso  @relation(fields: [concursoID], references: [id], onDelete: Cascade)
-  nota        Int
-  tipo        String    @db.Char(1)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@map("tb_candidato_concurso")
+model User {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  login     String
+  senha     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  gabarito  Gabarito[]
 }
 
-enum Gender {
-  M
-  F
+enum Genero {
+  Masculino
+  Feminino
 }
 
-enum UF {
-  AM
-  AL
+enum Uf {
   AC
+  AL
   AP
+  AM
   BA
-  PA
-  MT
-  MG
-  MS
+  CE
+  DF
+  ES
   GO
   MA
-  RS
-  TO
+  MT
+  MS
+  MG
+  PA
+  PB
+  PR
+  PE
   PI
-  SP
+  RJ
+  RN
+  RS
   RO
   RR
-  PR
-  CE
-  PE
   SC
-  PB
-  RN
-  ES
-  RJ
+  SP
   SE
-  DF
+  TO
 }
