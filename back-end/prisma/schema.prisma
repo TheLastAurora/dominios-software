@@ -29,20 +29,24 @@ model Candidato {
   uf              Uf
   email           String
   telefone        String?
+  concursoID      Int
+  concurso        Concurso @relation(fields: [concursoID], references: [id], onDelete: Cascade)
+  nota            Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
 
 model Concurso {
-  id          Int        @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   nome        String
   cargo       String
   vagas_ac    Int
   vagas_pd    Int
   homologacao DateTime
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   gabarito    Gabarito[]
+  Candidato   Candidato[]
 }
 
 model Gabarito {
