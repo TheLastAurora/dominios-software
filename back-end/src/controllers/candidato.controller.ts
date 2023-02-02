@@ -21,9 +21,21 @@ class CandidatoController {
             });
             if(existByDocumentId)
                 return res.status(400).json({message: 'Candidato Document ID already registered'});
-            await prisma.candidato.create({
+            const newCandidato = await prisma.candidato.create({
                 data: candidato
             });
+            await prisma.concurso.update({
+                where: {
+                    id: candidato.concursoID 
+                },
+                data: {
+                    candidatos: {
+                        connect: {
+                            id: newCandidato.id,
+                        },
+                    },
+                },
+            })
             return res.status(201).json({message: 'Candidato created'});
         } catch (error) {
             return res.status(500).json({message: 'Error'});
