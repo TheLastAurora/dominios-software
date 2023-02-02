@@ -23,6 +23,8 @@ router.delete('candidato/:id', CandidatoController.delete);
 //Concurso Routes
 router.post('/concurso', ConcursoController.create);
 router.get('/concurso/:id', ConcursoController.read);
+router.get('/concurso', ConcursoController.readAll);
+router.get('concurso/:id/candidatos', ConcursoController.readConcursoCandidatos);
 router.put('/concurso/:id', ConcursoController.update);
 router.delete('/concurso/:id', ConcursoController.delete);
 

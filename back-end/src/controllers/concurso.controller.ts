@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import prisma from "../database/prisma";
 import { Concurso } from "../models/concurso.model";
+import { Gabarito } from "../models/gabarito.model";
+import { Candidato } from '../models/candidato.model';
 
 class ConcursoController {
 
@@ -31,6 +33,43 @@ class ConcursoController {
             return res.status(500).json({message: 'Error'});
         }
         
+    }
+
+    public async readAll(req: Request, res: Response): Promise<Response>{
+        try{
+            const concursos: Concurso[] = await prisma.concurso.findMany();
+            return res.status(200).json(concursos);
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
+    }
+
+    public async readConcursoCandidatos(req: Request, res: Response): Promise<Response>{
+        try{
+            const id: number = Number(req.params.id);
+            const candidatos: Candidato[] = await prisma.candidato.findMany({
+                where: {
+                    concursoID: id,
+                },
+            });
+            return res.status(200).json(candidatos);
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
+    }
+
+    public async readConcursoGabaritos(req: Request, res: Response): Promise<Response>{
+        try{
+            const id: number = Number(req.params.id);
+            const gabaritos: Gabarito[] = await prisma.gabarito.findMany({
+                where: {
+                    concursoId: id,
+                },
+            });
+            return res.status(200).json(gabaritos);
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
     }
 
     public async update(req: Request, res: Response): Promise<Response>{
