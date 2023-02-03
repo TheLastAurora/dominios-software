@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import UserController from "./controllers/user.controller";
 import CandidatoController from "./controllers/candidato.controller";
 import ConcursoController from "./controllers/concurso.controller";
+import Auth from "./middlewares/auth";
 
 const router = Router();
 
@@ -9,24 +10,25 @@ const router = Router();
 router.get('/', (req: Request, res: Response)=> res.status(200).json({status: "SAPO API Online"}));
 
 //User Routes
-router.post('/user', UserController.create);
-router.get('/user/:id', UserController.read);
-router.put('/user/:id', UserController.update);
-router.delete('/user/:id', UserController.delete);
+router.post('/user', Auth.auth, UserController.create);
+router.get('/user/:id', Auth.auth, UserController.read);
+router.put('/user/:id', Auth.auth, UserController.update);
+router.delete('/user/:id', Auth.auth, UserController.delete);
+router.get('/login', UserController.authenticate);
 
 //Candidato Routes
-router.post('/candidato', CandidatoController.create);
-router.get('/candidato/:id', CandidatoController.read);
-router.put('/candidato/:id', CandidatoController.update);
-router.delete('candidato/:id', CandidatoController.delete);
+router.post('/candidato', Auth.auth, CandidatoController.create);
+router.get('/candidato/:id', Auth.auth, CandidatoController.read);
+router.put('/candidato/:id', Auth.auth, CandidatoController.update);
+router.delete('candidato/:id', Auth.auth, CandidatoController.delete);
 
 //Concurso Routes
-router.post('/concurso', ConcursoController.create);
-router.get('/concurso/:id', ConcursoController.read);
-router.get('/concurso', ConcursoController.readAll);
-router.get('concurso/:id/candidatos', ConcursoController.readConcursoCandidatos);
-router.put('/concurso/:id', ConcursoController.update);
-router.delete('/concurso/:id', ConcursoController.delete);
+router.post('/concurso', Auth.auth, ConcursoController.create);
+router.get('/concurso/:id', Auth.auth, ConcursoController.read);
+router.get('/concurso', Auth.auth, ConcursoController.readAll);
+router.get('concurso/:id/candidatos', Auth.auth, ConcursoController.readConcursoCandidatos);
+router.put('/concurso/:id', Auth.auth, ConcursoController.update);
+router.delete('/concurso/:id', Auth.auth, ConcursoController.delete);
 
 
 export default router;

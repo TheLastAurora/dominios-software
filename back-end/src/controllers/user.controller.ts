@@ -1,7 +1,8 @@
 import prisma from './../database/prisma';
 import { Request, Response } from "express";
-import { User } from "../models/user.model";
+import { Credentials, User } from "../models/user.model";
 import encrypt from "../functions/encrypt";
+import auth from '../middlewares/auth';
 
 class UserController {
 
@@ -88,6 +89,27 @@ class UserController {
                 },
             });
             return res.status(200).json({message: 'User deleted'});
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
+    }
+
+    public async authenticate(req: Request, res: Response): Promise<Response>{
+        try{
+            const credentials: Credentials = req.body;
+            const user = await prisma.user.findUnique({
+                where: {
+                    login: credentials.login,
+                },
+            });
+            if(!user)
+                return res.status(400).json({message: "User not found"});
+            if(credentials.senha == user.senha){
+                const token = auth.sign(credentials);
+                return res.status(200).json({token: token});
+            }
+            else
+                return res.status(403).json({message: 'unauth'});
         } catch(error) {
             return res.status(500).json({message: 'Error'});
         }
