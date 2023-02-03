@@ -10,20 +10,27 @@ class Auth {
         }, `${process.env.API_SECRET}`, {expiresIn: '1h'});
     }
 
-    public async auth(req: Request, res: Response, next: NextFunction){
+    public verify(req: Request, res: Response, next: NextFunction){
         try {
             const token = req.headers.authorization?.replace('Bearer ', '');
             if(!token)
                 res.status(500).json({message: 'Token missing'});
-            else
+            else {
                 jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=>{
                     if(error)
                         res.status(403).json({message: 'unauth'});
                 });
-            next();
+                next();
+            }
         } catch (error) {
             res.status(500).json({message: 'Error'});
         }
+    }
+
+    public decode(token: string){
+        jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=> {
+            return decoded;
+        });
     }
 
 }
