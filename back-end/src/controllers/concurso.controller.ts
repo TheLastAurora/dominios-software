@@ -61,7 +61,7 @@ class ConcursoController {
     public async readConcursoGabaritos(req: Request, res: Response): Promise<Response>{
         try{
             const id: number = Number(req.params.id);
-            const gabaritos: Gabarito[] = await prisma.gabarito.findMany({
+            const gabaritos = await prisma.gabarito.findMany({
                 where: {
                     concursoId: id,
                 },

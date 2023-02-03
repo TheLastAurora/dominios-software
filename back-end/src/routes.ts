@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import UserController from "./controllers/user.controller";
 import CandidatoController from "./controllers/candidato.controller";
 import ConcursoController from "./controllers/concurso.controller";
+import GabaritoController from "./controllers/gabarito.controller";
 import Auth from "./middlewares/auth";
 
 const router = Router();
@@ -21,6 +22,12 @@ router.post('/candidato', Auth.verify, CandidatoController.create);
 router.get('/candidato/:id', Auth.verify, CandidatoController.read);
 router.put('/candidato/:id', Auth.verify, CandidatoController.update);
 router.delete('/candidato/:id', Auth.verify, CandidatoController.delete);
+
+//Gabarito Routes
+router.post('/gabarito', Auth.verify, GabaritoController.create);
+router.get('/gabarito/:id', Auth.verify, GabaritoController.read);
+router.put('/gabarito/:id', Auth.verify, GabaritoController.update);
+router.delete('/gabarito/:id', Auth.verify, GabaritoController.delete);
 
 //Concurso Routes
 router.post('/concurso', Auth.verify, ConcursoController.create);
