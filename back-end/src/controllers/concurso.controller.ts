@@ -9,6 +9,7 @@ class ConcursoController {
     public async create(req: Request, res: Response): Promise<Response>{
         try {
             const concurso: Concurso = req.body;
+            concurso.homologacao = new Date(concurso.homologacao);
             await prisma.concurso.create({
                 data: concurso
             });
@@ -83,6 +84,7 @@ class ConcursoController {
             if(!concurso)
                 return res.status(400).json({message: 'Concurso not found'});
             const concursoData: Concurso = req.body;
+            concursoData.homologacao = new Date(concursoData.homologacao);
             await prisma.concurso.update({
                 where: {
                     id: id,
@@ -111,7 +113,7 @@ class ConcursoController {
                     id: id,
                 },
             });
-            return res.status(201).json({message: 'Concurso updated'});
+            return res.status(200).json({message: 'Concurso deleted'});
         } catch(error) {
             return res.status(500).json({message: 'Error'});
         }

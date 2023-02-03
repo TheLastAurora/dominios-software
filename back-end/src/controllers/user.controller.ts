@@ -16,13 +16,13 @@ class UserController {
             });
             if(userExists)
                 return res.status(401).json({message: 'User login already taken'});
-            user.senha = encrypt.hash(user.senha);
+            user.senha = await encrypt.hash(user.senha);
             await prisma.user.create({
                 data: user,
             });
             return res.status(201).json({message: 'User created'});
         } catch(error) {
-            return res.status(400).send({message: 'Bad request'});
+            return res.status(500).send({message: 'Bad request'});
         }
     }
 
@@ -36,6 +36,7 @@ class UserController {
             });
             if(!user)
                 return res.status(401).json({message: 'User not found'});
+            user.senha = '';
             return res.status(200).json(user);
         } catch(error) {
             return res.status(500).json({message: 'Error'});
@@ -60,7 +61,7 @@ class UserController {
             });
             if(userWithLogin && userWithLogin.login != userData.login)
                 return res.status(401).json({message: 'User login already taken'});
-            userData.senha = encrypt.hash(userData.senha);
+            userData.senha = await encrypt.hash(userData.senha);
             await prisma.user.update({
                 where: {
                     id: id
@@ -104,7 +105,7 @@ class UserController {
             });
             if(!user)
                 return res.status(400).json({message: "User not found"});
-            if(encrypt.compare(credentials.senha, user.senha)){
+            if(await encrypt.compare(credentials.senha, user.senha)){
                 const token = auth.sign(credentials);
                 return res.status(200).json({token: token});
             }

@@ -2,12 +2,12 @@ import bcrypt from 'bcrypt';
 
 class Encrypt {
 
-    public hash(text: string): string{
-        return bcrypt.hashSync(text, 10);
+    public async hash(text: string): Promise<string>{
+        return bcrypt.hash(text, 10);
     }
 
-    public compare(text: string, hash: string): boolean{
-        return bcrypt.compareSync(text, hash);
+    public async compare(text: string, hash: string): Promise<boolean>{
+        return bcrypt.compare(text, hash);
     }
 
 }

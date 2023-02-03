@@ -9,7 +9,7 @@ export interface Candidato {
     nome_pai: string,
     data_nascimento: Date,
     rg: string,
-    data_expedicao,
+    data_expedicao: Date,
     logradouro: string,
     numero: string,
     complemento: string,

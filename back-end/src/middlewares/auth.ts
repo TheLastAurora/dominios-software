@@ -15,13 +15,13 @@ class Auth {
             const token = req.headers.authorization?.replace('Bearer ', '');
             if(!token)
                 res.status(500).json({message: 'Token missing'});
-            else {
+            else
                 jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=>{
                     if(error)
                         res.status(403).json({message: 'unauth'});
+                    else
+                        next();
                 });
-                next();
-            }
         } catch (error) {
             res.status(500).json({message: 'Error'});
         }

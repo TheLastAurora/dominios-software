@@ -21,6 +21,8 @@ class CandidatoController {
             });
             if(existByDocumentId)
                 return res.status(400).json({message: 'Candidato Document ID already registered'});
+            candidato.data_nascimento = new Date(candidato.data_nascimento);
+            candidato.data_expedicao = new Date(candidato.data_expedicao);
             const newCandidato = await prisma.candidato.create({
                 data: candidato
             });
@@ -83,6 +85,8 @@ class CandidatoController {
             });
             if(existByDocumentId && existByDocumentId.rg != candidatoData.rg)
                 return res.status(400).json({message: 'Candidato Document ID already registered'});
+            candidatoData.data_nascimento = new Date(candidato.data_nascimento);
+            candidatoData.data_expedicao = new Date(candidato.data_expedicao);
             await prisma.candidato.update({
                 where: {
                     id: id,
