@@ -22,6 +22,18 @@ class GabaritoController {
                     },
                 },
             });
+            await prisma.user.update({
+                where: {
+                    id: 2
+                },
+                data: {
+                    gabarito: {
+                        connect: {
+                            id: newGabarito.id,
+                        },
+                    },
+                },
+            });
             return res.status(201).json({message: 'Gabarito created'});
         } catch(error) {
             return res.status(500).json({message: 'Error'});
