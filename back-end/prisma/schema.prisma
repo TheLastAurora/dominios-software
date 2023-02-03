@@ -34,6 +34,8 @@ model Candidato {
   nota            Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+
+  @@map("tb_candidatos")
 }
 
 model Concurso {
@@ -47,6 +49,8 @@ model Concurso {
   updatedAt   DateTime    @updatedAt
   gabaritos   Gabarito[]
   candidatos  Candidato[]
+
+  @@map("tb_concursos")
 }
 
 model Gabarito {
@@ -55,10 +59,12 @@ model Gabarito {
   concurso   Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
   userId     Int
   user       User     @relation(fields: [userId], references: [id])
-  tipo       String   @db.Char(1)
-  respostas  Json
+  tipo       String?  @db.Char(1)
+  respostas  Json?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  @@map("tb_gabaritos")
 }
 
 model User {
@@ -69,6 +75,8 @@ model User {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   gabarito  Gabarito[]
+
+  @@map("tb_users")
 }
 
 enum Genero {

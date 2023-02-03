@@ -10,7 +10,7 @@ const router = Router();
 router.get('/', (req: Request, res: Response)=> res.status(200).json({status: "SAPO API Online"}));
 
 //User Routes
-router.post('/user', Auth.auth, UserController.create);
+router.post('/user', UserController.create);
 router.get('/user/:id', Auth.auth, UserController.read);
 router.put('/user/:id', Auth.auth, UserController.update);
 router.delete('/user/:id', Auth.auth, UserController.delete);

@@ -104,7 +104,7 @@ class UserController {
             });
             if(!user)
                 return res.status(400).json({message: "User not found"});
-            if(credentials.senha == user.senha){
+            if(encrypt.compare(credentials.senha, user.senha)){
                 const token = auth.sign(credentials);
                 return res.status(200).json({token: token});
             }
