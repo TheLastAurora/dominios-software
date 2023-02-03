@@ -3,7 +3,7 @@ import { User } from './user.model';
 
 export interface Gabarito {
     id?: number,
-    tipo?: string | null,
+    tipo: string,
     respostas?: Prisma.JsonObject,
     userId: number,
     concursoId: number,

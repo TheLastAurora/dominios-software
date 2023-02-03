@@ -59,7 +59,7 @@ model Gabarito {
   concurso   Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
   userId     Int
   user       User     @relation(fields: [userId], references: [id])
-  tipo       String?  @db.Char(1)
+  tipo       String  @db.Char(1)
   respostas  Json?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
