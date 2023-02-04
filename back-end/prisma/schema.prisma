@@ -31,7 +31,7 @@ model Candidato {
   telefone        String
   concursoID      Int
   concurso        Concurso @relation(fields: [concursoID], references: [id], onDelete: Cascade)
-  nota            Int
+  nota            Int?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -112,4 +112,5 @@ enum Uf {
   SP
   SE
   TO
+  SN
 }
