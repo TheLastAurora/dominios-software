@@ -80,8 +80,8 @@ model User {
 }
 
 enum Genero {
-  Masculino
-  Feminino
+  M
+  F
 }
 
 enum Uf {
