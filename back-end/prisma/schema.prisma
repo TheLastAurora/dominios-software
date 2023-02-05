@@ -12,7 +12,7 @@ datasource db {
 
 model Candidato {
   id              Int      @id @default(autoincrement())
-  nome            String   @unique
+  nome            String   
   cpf             String   @unique
   genero          Genero
   nome_mae        String
