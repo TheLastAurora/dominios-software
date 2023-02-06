@@ -1,0 +1,12 @@
+div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./../../../assets/bgs/auth-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: linear-gradient(to bottom right, rgba(66, 135, 245, 0.6), rgba(107, 162, 250, 0.1));
+}

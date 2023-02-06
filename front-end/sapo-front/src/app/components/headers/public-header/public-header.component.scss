@@ -1,0 +1,32 @@
+@import './../../../../styles/colors.scss';
+
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 32px;
+    background-color: $blue-light;
+    div {
+        display: flex;
+        img {
+            width: 36px;
+            height: 36px;
+            margin-right: 24px;
+        }
+        h3 {
+            color: $white;
+        }
+    }
+    nav {
+        ul {
+            display: flex;
+            list-style: none;
+            li {
+                margin: 0 32px;
+                color: $white;
+            }
+        }
+    }
+}
