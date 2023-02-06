@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    console.log(this.authForm);
   }
 
   get loginControl(): FormControl {
@@ -59,14 +58,13 @@ export class LoginComponent implements OnInit {
   submit(): void{
     this.data.login = this.login;
     this.data.senha = this.senha;
-    this.authService.login(this.data).subscribe((data: string) => {
-      this.authService.setToken(data);
-      this.router.navigate(['admin']);
-    },
-      (error) => {
-        console.log(error);
-      }
-    )
+    this.authService.login(this.data).subscribe({
+      next: (data) => {
+        this.authService.setToken(data);
+        this.router.navigate(['admin']);
+      },
+      error: (error) => console.log(error)
+    });
   }
 
 }
