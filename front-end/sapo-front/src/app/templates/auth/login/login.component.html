@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div>
+    <header>
+        <h4>SAPO</h4>
+        <h6>Acesse nosso sistema</h6>
+    </header>
+    <form [formGroup]="authForm">
+        <h5>Insira seus dados</h5>
+        <app-text-input name="Login" type="text" [control]="loginControl" ></app-text-input>
+        <app-text-input name="Senha" type="password" [control]="senhaControl" ></app-text-input>
+        <app-flat-button buttonText="Acessar" (event)="submit()"></app-flat-button>
+    </form>
+    <app-text-button text="Quero me cadastrar" (event)="signup()"></app-text-button>
+</div>
