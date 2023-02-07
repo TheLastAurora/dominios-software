@@ -1,0 +1,27 @@
+@import './../../../../styles/colors.scss';
+
+div {
+    display: flex;
+    flex-direction: column;
+    label {
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: $blue-dark;
+        margin-bottom: 6px;
+    }
+    input {
+        width: 200px;
+        padding: 6px 12px;
+        font-size: 14px;
+        border: 1px $blue-dark solid;
+        outline: 0;
+        border-radius: 4px;
+        &:hover {
+            cursor: text;
+            border: 1px $blue-light solid;
+        }
+        &:focus {
+            border: 1px $blue-default solid;
+        }
+    }
+}

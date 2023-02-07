@@ -1,0 +1,17 @@
+@import './../../../../styles/colors.scss';
+
+button {
+    width: 54px;
+    height: 54px;
+    background-color: $white;
+    border: 1px $blue-dark solid;
+    border-radius: 4px;
+    &:hover {
+        background-color: $blue-dark;
+        transition: 0.2s;
+    }
+    img {
+        width: 32px;
+        height: 32px;
+    }
+}

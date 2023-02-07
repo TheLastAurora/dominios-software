@@ -107,7 +107,7 @@ class UserController {
                 return res.status(400).json({message: "User not found"});
             if(await encrypt.compare(credentials.senha, user.senha)){
                 const token = auth.sign(credentials);
-                return res.status(200).json({token: token});
+                return res.status(200).json(token);
             }
             else
                 return res.status(403).json({message: 'unauth'});
