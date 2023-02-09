@@ -1,1 +1,16 @@
-<p>toast works!</p>
+<div
+    *ngIf="showsToast"
+    [class]="toastClass"> 
+    <!--We bind it by surrounding 'class' with square-brackets and referencing the property from the template-->  ﻿
+    <div style="max-width: 160px;">    
+        {{ toastMessage }}  
+    </div>  
+
+    <a
+        class="close-btn" 
+        (click)="showsToast = !showsToast">    
+        <small>      
+            Dismiss    
+        </small>  
+    </a>
+</div>
