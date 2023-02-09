@@ -1,0 +1,32 @@
+@import './../../../../styles/colors.scss';
+
+button {
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    border: 2px $blue-light solid;
+    img {
+        width: 32px;
+        height: 32px;
+        margin-right: 24px;
+    }
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        color: $blue-light;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: $blue-light;
+        transition: 0.2s;
+        p {
+            color: $white;
+        }
+    }
+}
