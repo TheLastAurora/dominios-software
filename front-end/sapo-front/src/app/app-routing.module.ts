@@ -27,15 +27,13 @@ const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'}
   ]},
   {path: 'admin', component: AdminComponent, children: [
-    {path: 'concursos', component: ConcursosComponent, children: [
-      {path: 'form/:id', component: ConcursoFormComponent, children: [
-        {path: 'details', component: ConcursoDetailsComponent},
-        {path: 'gabaritos', component: GabaritosComponent},
-        {path: 'gabarito/:gabaritoId', component: GabaritosFormComponent},
-        {path: 'respostas', component: RespostasComponent},
-        {path: '', redirectTo: 'details', pathMatch: 'full'}
-      ]},
-      {path: '', redirectTo: 'concursos', pathMatch: 'full'}
+    {path: 'concursos', component: ConcursosComponent},
+    {path: 'concurso/:id', component: ConcursoFormComponent, children: [
+      {path: 'details', component: ConcursoDetailsComponent},
+      {path: 'gabaritos', component: GabaritosComponent},
+      {path: 'gabarito/:gabaritoId', component: GabaritosFormComponent},
+      {path: 'respostas', component: RespostasComponent},
+      {path: '', redirectTo: 'details', pathMatch: 'full'}
     ]},
     {path: '', redirectTo: 'concursos', pathMatch: 'full'}
   ]},

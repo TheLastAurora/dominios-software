@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EventTypes } from 'src/app/models/toast.model';
 import { Credentials } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private toastService: ToastService,
     private fb: FormBuilder,
     private router: Router,
   ) { }
@@ -61,6 +64,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.data).subscribe({
       next: (data) => {
         this.authService.setToken(data);
+        this.toastService.showToast('Success', "User registered");
         this.router.navigate(['admin']);
       },
       error: (error) => console.log(error)

@@ -1,0 +1,12 @@
+@import './../../../styles/fonts.scss';
+
+div {
+    width: 100%;
+    height: 100%;
+    padding-top: 102px;
+    display: flex;
+    app-admin-sidebar {
+        width: 20%;
+        height: 100%;
+    }
+}

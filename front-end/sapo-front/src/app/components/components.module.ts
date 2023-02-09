@@ -1,3 +1,5 @@
+import { AdminSidebarComponent } from './sidebar/admin-sidebar/admin-sidebar.component';
+import { SidebarButtonComponent } from './buttons/sidebar-button/sidebar-button.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -10,6 +12,8 @@ import { ToastComponent } from './toast/toast.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { SidebarModule } from './sidebar/sidebar.module';
 
 
 
@@ -18,10 +22,12 @@ import { AvatarComponent } from './avatar/avatar.component';
     ToastComponent,
     SnackbarComponent,
     TooltipComponent,
-    AvatarComponent
+    AvatarComponent,
+    SplashScreenComponent
   ],
   imports: [
     CommonModule,
+    CardsModule,
     ButtonsModule,
     FootersModule,
     HeadersModule,
@@ -37,8 +43,10 @@ import { AvatarComponent } from './avatar/avatar.component';
     InputsModule,
     ListsModule,
     SnackbarComponent,
+    SplashScreenComponent,
     ToastComponent,
-    TooltipComponent
+    TooltipComponent,
+    SidebarModule
   ]
 })
 export class ComponentsModule { }
