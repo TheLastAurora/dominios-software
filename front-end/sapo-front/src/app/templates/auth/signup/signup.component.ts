@@ -1,8 +1,10 @@
+import { SplashScreenService } from './../../../services/splash-screen.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +24,9 @@ export class SignupComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private splashScreen: SplashScreenService,
+    private toast: ToastService
   ) { }
 
   ngOnInit(): void {
@@ -69,11 +73,18 @@ export class SignupComponent implements OnInit {
     this.data.nome = this.nome;
     this.data.login = this.login;
     this.data.senha = this.senha;
+    this.splashScreen.start();
     this.userService.create(this.data).subscribe({
-      next: () => this.goToLogin()
+      next: () => {
+        this.goToLogin();
+        this.toast.success("Usuário cadastrado");
+      }
       ,
-      error: (error) => console.log(error)      
+      error: (error) => {
+        this.toast.warning(error.error.message);
+      }     
     });
+    this.splashScreen.stop();
   }
 
 }

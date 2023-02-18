@@ -34,7 +34,7 @@ router.post('/concurso', Auth.verify, ConcursoController.create);
 router.get('/concurso/:id', Auth.verify, ConcursoController.read);
 router.get('/concurso', Auth.verify, ConcursoController.readAll);
 router.get('/concurso/:id/candidatos', Auth.verify, ConcursoController.readConcursoCandidatos);
-router.get('/concurso/:id/gabaritos', Auth.verify, ConcursoController.readConcursoGabaritos)
+router.get('/concurso/:id/gabaritos', Auth.verify, ConcursoController.readConcursoGabaritos);
 router.put('/concurso/:id', Auth.verify, ConcursoController.update);
 router.delete('/concurso/:id', Auth.verify, ConcursoController.delete);
 

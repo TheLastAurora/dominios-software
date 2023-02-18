@@ -7,32 +7,36 @@ import { EventTypes, ToastEvent } from '../models/toast.model';
 })
 export class ToastService {
 
-  public showsToast$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);  
-
-  // The message string that'll bind and display on the toast
-  public toastMessage$: BehaviorSubject<string> = new BehaviorSubject<string>('Default Toast Message');  
-
-  // The state that will add a style class to the component
-  public toastState$: BehaviorSubject<string> = new BehaviorSubject<string>(`${EventTypes.success}`);  
+  public toasts: BehaviorSubject<ToastEvent[]> = new BehaviorSubject<ToastEvent[]>(new Array());
 
   constructor() {
   }
 
-  showToast(toastState: string, toastMsg: string): void {  
-    // Observables use '.next()' to indicate what they want done with observable    
-    // This will update the toastState to the toastState passed into the function
-    this.toastState$.next(toastState);    
+  success(message: string): void {
+    this.show(EventTypes.success, "Sucesso", message);
+  }
 
-    // This updates the toastMessage to the toastMsg passed into the function
-    this.toastMessage$.next(toastMsg);    
+  warning(message: string): void {
+    this.show(EventTypes.warning, "Atenção", message);
+  }
 
-    // This will update the showsToast trigger to 'true'
-    this.showsToast$.next(true);   
-  }  
+  error(message: string): void {
+    this.show(EventTypes.error, "Erro", message);
+  }
 
-  // This updates the showsToast behavioursubject to 'false'  
-  dismissToast(): void {    
-    this.showsToast$.next(false);  
+  show(event: EventTypes, title: string, message: string): void {
+    let toasts: ToastEvent[] = this.allToasts;
+    const toast: ToastEvent = {title: title, message: message, type: event};
+    toasts = [...toasts, toast];
+    this.toasts.next(toasts);
+    setTimeout(()=> {
+      toasts.shift();
+      this.toasts.next(toasts);
+    }, 5000);
+  }
+
+  get allToasts(): ToastEvent[] {
+    return this.toasts.value;
   }
 
 }

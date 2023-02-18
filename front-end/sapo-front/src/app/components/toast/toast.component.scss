@@ -1,45 +1,62 @@
-%default-toast { 
-    // You indicate a placeholder selected with a preceding '%'
-    position: absolute;
-    top: 0;
-    right: 0rem;  
-    margin: 2rem;  
-    display: inline-flex;  
-    min-width: 260px;    
-    min-height: 70px;  
-    max-height: 70px;  
-    box-shadow: 6px 6px 12px #00000040;  
-  
-    flex-flow: row nowrap;  
-    align-items: center;  
-    justify-content: space-between;  
-    border-left: 6px solid black;  
-    padding: 1.5rem;  
-    border-radius: 4px;  
-    font-size: 0.9rem;
+@import '../../../styles/colors.scss';
+
+.container {
+  width: 240px;
+  background-color: $white;
+  border: 1px solid $white;
+  color: $white;
+  border-radius: 8px;
+  .header {
+    display: flex;
+    padding: 4px 8px;
+    p {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
   }
-  
-  // Default toast
-  .toast-class {  
-    @extend %default-toast; // You then add the styles to another selector with the @extend decorator
+  .body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: $white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 6px 8px;
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+    } 
   }
-  
-  // Now we can make our state-specific classes
-  
-  // Success
-  .success-toast {  
-    @extend %default-toast;  
-    border-left: 6px solid green;
+}
+
+.container.success {
+  background-color: $green-light;
+  border: 1px solid $green-light;
+  .body {
+    p {
+      color: $green-light;
+    }
   }
-  
-  // Warning
-  .warning-toast {  
-    @extend %default-toast;  
-    border-left: 6px solid yellow;
+}
+
+.container.warning {
+  background-color: $yellow-dark;
+  border: 1px solid $yellow-dark;
+  .body {
+    p {
+      color: $yellow-dark;
+    }
   }
-  
-  // Danger
-  .danger-toast {  
-    @extend %default-toast;  
-    border-left: 6px solid red;
+}
+
+.container.error {
+  background-color: $red-default;
+  border: 1px solid $red-default;
+  .body {
+    p {
+      color: $red-default;
+    }
   }
+}

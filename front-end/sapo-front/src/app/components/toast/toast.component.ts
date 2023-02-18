@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastService } from 'src/app/services/toast.service';
+import { Component, Input } from '@angular/core';
+import { ToastEvent, EventTypes } from 'src/app/models/toast.model';
 
 @Component({  
   selector: 'app-toast',  
@@ -7,17 +7,23 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./toast.component.scss']
 })
 
-export class ToastComponent implements OnInit {  
-  toastClass!: string[];  
-  toastMessage!: string;  
-  showsToast!: boolean; 
+export class ToastComponent {  
+  
+  @Input()
+  toast!: ToastEvent;
 
-  constructor(public toast: ToastService) { }  
+  constructor() { }  
 
-  ngOnInit(): void {
+  get title(): string {
+    return this.toast.title;
   }
 
-  dismiss(): void {    
-    this.toast.dismissToast();  
+  get message(): string {
+    return this.toast.message;
   }
+
+  get type(): string {
+    return `container ${EventTypes[this.toast.type]}`;
+  }
+
 }

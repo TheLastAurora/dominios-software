@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EventTypes } from 'src/app/models/toast.model';
 import { Credentials } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private toastService: ToastService,
     private fb: FormBuilder,
     private router: Router,
+    private splashScreen: SplashScreenService
   ) { }
 
   ngOnInit(): void {
@@ -61,14 +63,18 @@ export class LoginComponent implements OnInit {
   submit(): void{
     this.data.login = this.login;
     this.data.senha = this.senha;
+    this.splashScreen.start();
     this.authService.login(this.data).subscribe({
       next: (data) => {
         this.authService.setToken(data);
-        this.toastService.showToast('Success', "User registered");
+        this.toastService.success("Login realizado com sucesso");
         this.router.navigate(['admin']);
       },
-      error: (error) => console.log(error)
+      error: (error) => {
+        this.toastService.error(error.error.message);
+      }
     });
+    this.splashScreen.stop();
   }
 
 }
