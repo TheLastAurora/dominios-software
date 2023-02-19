@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private toastService: ToastService,
+    private toast: ToastService,
     private fb: FormBuilder,
     private router: Router,
     private splashScreen: SplashScreenService
@@ -67,11 +67,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.data).subscribe({
       next: (data) => {
         this.authService.setToken(data);
-        this.toastService.success("Login realizado com sucesso");
+        this.toast.success("Login realizado com sucesso");
         this.router.navigate(['admin']);
       },
       error: (error) => {
-        this.toastService.error(error.error.message);
+        this.toast.error(error.error.message);
       }
     });
     this.splashScreen.stop();
