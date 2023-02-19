@@ -1,0 +1,19 @@
+ul {
+    list-style: none;
+    display: flex;
+    li {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        text-align: center;
+        &.id {
+            width: 10%;
+        }
+        &.name {
+            width: 30%;
+        }
+        &.date {
+            width: 20%;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<ul (click)="submit()">
+    <li class="id">
+        {{data.id}}
+    </li>
+    <li *ngIf="type == 'concurso'" class="name">
+        {{data.cargo}}
+    </li>
+    <li *ngIf="type != 'gabarito'" class="name">
+        {{data.nome}}
+    </li>
+    <li class="date">
+        {{data.createdAt}}
+    </li>
+</ul>
