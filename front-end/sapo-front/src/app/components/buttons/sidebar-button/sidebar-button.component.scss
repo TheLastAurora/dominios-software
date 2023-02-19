@@ -8,8 +8,9 @@ button {
     justify-content: center;
     align-items: center;
     background-color: white;
+    border: 0;
     border-radius: 8px;
-    border: 2px $blue-light solid;
+    transition: 0.2s;
     img {
         width: 32px;
         height: 32px;
@@ -19,14 +20,15 @@ button {
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 1.5px;
-        color: $blue-light;
+        transition: 0.2s;
     }
     &:hover {
         cursor: pointer;
-        background-color: $blue-light;
         transition: 0.2s;
+        background-color: $light-grey;
         p {
-            color: $white;
+            transition: 0.2s;
+            color: rgba(0, 0, 0, 0.5);
         }
     }
 }

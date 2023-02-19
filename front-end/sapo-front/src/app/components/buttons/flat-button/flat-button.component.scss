@@ -2,19 +2,20 @@
 
 button {
     width: 200px;
-    padding: 4px 0;
+    padding: 8px 0;
+    background-color: $blue-dark;
+    color: white;
+    transition: 0.2s;
     border: 2px $blue-dark solid;
     border-radius: 4px;
-    background-color: $white;
     font-size: 16px;
-    letter-spacing: 1px;
-    font-weight: 500;
-    color: $blue-dark;
+    letter-spacing: 2.4px;
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.2s;
     &:hover {
-        cursor: pointer;
-        background-color: $blue-dark;
-        color: white;
+        background-color: $white;
+        color: $blue-dark;
         transition: 0.2s;
     }
 }

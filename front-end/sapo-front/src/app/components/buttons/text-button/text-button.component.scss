@@ -4,11 +4,15 @@ button {
     padding: 2px 1px;
     background-color: inherit;
     border: 0;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-size: 13px;
+    letter-spacing: 1.2px;
     border-bottom: 1px $black solid;
     color: inherit;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.2s;
     &:hover {
-        cursor: pointer;
+        transition: 0.2s;
+        opacity: 0.2;
     }
 }
