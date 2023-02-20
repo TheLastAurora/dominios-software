@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-sidebar',
   templateUrl: './admin-sidebar.component.html',
   styleUrls: ['./admin-sidebar.component.scss']
 })
-export class AdminSidebarComponent implements OnInit {
+export class AdminSidebarComponent {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  goToConcursos(): void {
+    this.router.navigate(['admin/concursos']);
   }
 
 }
