@@ -1,6 +1,6 @@
-@import '../../../../../../styles/colors.scss';
+@import './colors.scss';
 
-section {
+section.form-section {
     width: 100%;
     margin: 48px 12px;
     padding: 24px;
@@ -9,7 +9,7 @@ section {
     position: relative;
     border: 2px solid $light-grey;
     border-radius: 8px;
-    h5 {
+    h5.form-section-header {
         position: absolute;
         top: -12px;
         background-color: white;

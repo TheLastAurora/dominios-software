@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { SplashScreenService } from 'src/app/services/splash-screen.service';
+import { Component, AfterViewInit } from '@angular/core';
+import { ConcursoService } from 'src/app/services/concurso.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { Gabarito } from 'src/app/models/gabarito.model';
 
 @Component({
   selector: 'app-gabaritos',
   templateUrl: './gabaritos.component.html',
   styleUrls: ['./gabaritos.component.scss']
 })
-export class GabaritosComponent implements OnInit {
+export class GabaritosComponent implements AfterViewInit {
 
-  constructor() { }
+  gabaritos?: Gabarito[];
 
-  ngOnInit(): void {
+  constructor(
+    private service: ConcursoService,
+    private toast: ToastService,
+    private splashScreen: SplashScreenService
+  ) { }
+
+  ngAfterViewInit(): void {
+    this.splashScreen.start();
+    this.service.getAllGabaritos().subscribe({
+      next: data => {
+        this.gabaritos = data;
+        this.splashScreen.stop();
+      }
+      ,
+      error: error => {
+        this.toast.error(error.error.message);
+        this.splashScreen.stop();
+      }
+    })
   }
 
 }

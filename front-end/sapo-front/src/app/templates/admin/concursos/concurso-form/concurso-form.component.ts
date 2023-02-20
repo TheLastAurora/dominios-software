@@ -1,9 +1,6 @@
-import { ToastService } from 'src/app/services/toast.service';
 import { ConcursoService } from './../../../../services/concurso.service';
 import { Component, OnInit } from '@angular/core';
-import { Concurso } from 'src/app/models/concurso.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SplashScreenService } from 'src/app/services/splash-screen.service';
 
 @Component({
   selector: 'app-concurso-form',
@@ -16,12 +13,25 @@ export class ConcursoFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ConcursoService
+    private service: ConcursoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.concursoId = this.route.snapshot.paramMap.get('id');
     this.service.setConcursoId(Number(this.concursoId));
+  }
+
+  goToDetails(): void {
+    this.router.navigate([`admin/concurso/${this.concursoId}/details`]);
+  }
+
+  goToGabaritos(): void {
+    this.router.navigate([`admin/concurso/${this.concursoId}/gabaritos`]);
+  }
+
+  goToRespostas(): void {
+    this.router.navigate([`admin/concurso/${this.concursoId}/respostas`]);
   }
 
 }

@@ -2,9 +2,9 @@
     <h2>Concurso {{concursoId}}</h2>
     <nav>
         <ul>
-            <li><a>DETALHES</a></li>
-            <li><a>GABARITOS</a></li>
-            <li><a>RESPOSTAS</a></li>
+            <li><app-flat-button buttonText="Detalhes" (event)="goToDetails()"></app-flat-button></li>
+            <li><app-flat-button buttonText="Gabaritos" (event)="goToGabaritos()"></app-flat-button></li>
+            <li><app-flat-button buttonText="Respostas" (event)="goToRespostas()"></app-flat-button></li>
         </ul>
     </nav>
     <section>

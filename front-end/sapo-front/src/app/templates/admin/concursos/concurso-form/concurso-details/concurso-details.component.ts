@@ -8,8 +8,7 @@ import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-concurso-details',
-  templateUrl: './concurso-details.component.html',
-  styleUrls: ['./concurso-details.component.scss']
+  templateUrl: './concurso-details.component.html'
 })
 export class ConcursoDetailsComponent implements AfterViewInit {
 

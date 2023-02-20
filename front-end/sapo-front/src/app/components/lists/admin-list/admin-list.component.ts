@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConcursoService } from 'src/app/services/concurso.service';
 
 @Component({
   selector: 'app-admin-list',
@@ -15,11 +16,19 @@ export class AdminListComponent {
   type!: string;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private concursoService: ConcursoService
   ) { }
 
   goToTab(id: string): void{
-    this.router.navigate([`admin/${this.type}/${id}`]);
+    switch(this.type){
+      case 'concurso':
+        this.router.navigate([`admin/${this.type}/${id}`]);
+        break;
+      case 'gabarito':
+        this.router.navigate([`admin/concurso/${this.concursoService.concursoId}/${this.type}/${id}`]);
+        break;
+    }
   }
 
 }

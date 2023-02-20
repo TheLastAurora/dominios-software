@@ -1,10 +1,7 @@
-import { Prisma } from '@prisma/client';
-import { User } from './user.model';
-
 export interface Gabarito {
     id?: number,
     tipo: string,
-    respostas?: Prisma.JsonObject,
+    respostas?: JSON,
     userId: number,
     concursoId: number,
     createdAt?: Date,
