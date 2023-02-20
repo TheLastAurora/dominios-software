@@ -20,6 +20,11 @@ export class AuthService {
     return this.http.post<string>(this.apiUrl, body);
   }
 
+  logout(): void {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['auth/login']);
+  }
+
   get token(): string | null {
     return localStorage.getItem('jwt');
   }

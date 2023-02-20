@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastService } from './../../../services/toast.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-header',
   templateUrl: './admin-header.component.html',
   styleUrls: ['./admin-header.component.scss']
 })
-export class AdminHeaderComponent implements OnInit {
+export class AdminHeaderComponent {
 
-  constructor() { }
+  constructor(
+    private service: AuthService,
+    private toast: ToastService
+  ) { }
 
-  ngOnInit(): void {
+  logout(): void {
+    this.service.logout();
+    this.toast.warning("Usuário deslogado");
   }
 
 }
