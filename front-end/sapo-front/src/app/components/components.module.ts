@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CardsModule } from './cards/cards.module';
@@ -10,6 +10,9 @@ import { ToastComponent } from './toast/toast.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { SidebarModule } from './sidebar/sidebar.module';
+import { ToasterComponent } from './toaster/toaster.component';
 
 
 
@@ -18,10 +21,13 @@ import { AvatarComponent } from './avatar/avatar.component';
     ToastComponent,
     SnackbarComponent,
     TooltipComponent,
-    AvatarComponent
+    AvatarComponent,
+    SplashScreenComponent,
+    ToasterComponent
   ],
   imports: [
     CommonModule,
+    CardsModule,
     ButtonsModule,
     FootersModule,
     HeadersModule,
@@ -37,8 +43,11 @@ import { AvatarComponent } from './avatar/avatar.component';
     InputsModule,
     ListsModule,
     SnackbarComponent,
+    SplashScreenComponent,
     ToastComponent,
-    TooltipComponent
+    TooltipComponent,
+    SidebarModule,
+    ToasterComponent
   ]
 })
 export class ComponentsModule { }

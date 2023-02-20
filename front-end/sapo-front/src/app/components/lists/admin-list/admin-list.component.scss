@@ -1,0 +1,28 @@
+@import '../../../../styles/colors.scss';
+
+div {
+    width: 100%;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 0 6px $light-grey;
+    ul {
+        padding: 10px 0;
+        list-style: none;
+        display: flex;
+        li {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-align: center;
+            &.id {
+                width: 10%;
+            }
+            &.name {
+                width: 30%;
+            }
+            &.date {
+                width: 20%;
+            }
+        }
+    }
+}

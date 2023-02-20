@@ -1,0 +1,63 @@
+@import '../../../styles/colors.scss';
+
+.container {
+  width: 240px;
+  background-color: $white;
+  border: 1px solid $white;
+  color: $white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+  .header {
+    display: flex;
+    padding: 4px 8px;
+    p {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+  .body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: $white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 6px 8px;
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+    } 
+  }
+}
+
+.container.success {
+  background-color: $green-light;
+  border: 1px solid $green-light;
+  .body {
+    p {
+      color: $green-light;
+    }
+  }
+}
+
+.container.warning {
+  background-color: $yellow-dark;
+  border: 1px solid $yellow-dark;
+  .body {
+    p {
+      color: $yellow-dark;
+    }
+  }
+}
+
+.container.error {
+  background-color: $red-default;
+  border: 1px solid $red-default;
+  .body {
+    p {
+      color: $red-default;
+    }
+  }
+}

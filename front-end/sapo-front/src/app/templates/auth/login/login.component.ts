@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EventTypes } from 'src/app/models/toast.model';
 import { Credentials } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { SplashScreenService } from 'src/app/services/splash-screen.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +23,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private toast: ToastService,
     private fb: FormBuilder,
     private router: Router,
+    private splashScreen: SplashScreenService
   ) { }
 
   ngOnInit(): void {
@@ -58,13 +63,18 @@ export class LoginComponent implements OnInit {
   submit(): void{
     this.data.login = this.login;
     this.data.senha = this.senha;
+    this.splashScreen.start();
     this.authService.login(this.data).subscribe({
       next: (data) => {
         this.authService.setToken(data);
+        this.toast.success("Login realizado com sucesso");
         this.router.navigate(['admin']);
       },
-      error: (error) => console.log(error)
+      error: (error) => {
+        this.toast.error(error.error.message);
+      }
     });
+    this.splashScreen.stop();
   }
 
 }

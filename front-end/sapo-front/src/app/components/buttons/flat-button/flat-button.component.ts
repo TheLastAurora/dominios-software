@@ -19,4 +19,8 @@ export class FlatButtonComponent {
     this.event.emit();
   }
 
+  get text() {
+    return this.buttonText?.toUpperCase();
+  }
+
 }

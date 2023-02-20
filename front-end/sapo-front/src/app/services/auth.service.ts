@@ -20,7 +20,12 @@ export class AuthService {
     return this.http.post<string>(this.apiUrl, body);
   }
 
-  getToken(): string | null {
+  logout(): void {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['auth/login']);
+  }
+
+  get token(): string | null {
     return localStorage.getItem('jwt');
   }
 
@@ -29,10 +34,10 @@ export class AuthService {
   }
 
   getRequestHeaders(): HttpHeaders{
-    return new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*')
-      .set('authorization', `${this.getToken}`);
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    });
   }
 
 }
