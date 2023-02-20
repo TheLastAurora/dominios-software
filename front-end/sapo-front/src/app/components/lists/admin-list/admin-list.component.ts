@@ -25,9 +25,8 @@ export class AdminListComponent {
       case 'concurso':
         this.router.navigate([`admin/${this.type}/${id}`]);
         break;
-      case 'gabarito':
+      default:
         this.router.navigate([`admin/concurso/${this.concursoService.concursoId}/${this.type}/${id}`]);
-        break;
     }
   }
 

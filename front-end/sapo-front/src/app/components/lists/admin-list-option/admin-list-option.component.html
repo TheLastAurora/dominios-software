@@ -8,6 +8,12 @@
     <li *ngIf="type != 'gabarito'" class="name">
         {{data.nome}}
     </li>
+    <li *ngIf="type == 'gabarito'" class="name">
+        {{data.tipo}}
+    </li>
+    <li *ngIf="type == 'candidato'" class="name">
+        {{data.cpf}}
+    </li>
     <li class="date">
         {{data.createdAt}}
     </li>
