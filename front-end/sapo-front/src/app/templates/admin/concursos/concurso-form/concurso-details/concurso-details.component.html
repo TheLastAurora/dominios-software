@@ -1,1 +1,21 @@
-<p>concurso-details works!</p>
+<section>
+    <h5>
+        Detalhes
+    </h5>
+    <app-input label="Cargo" [value]="cargo"></app-input>
+    <app-input label="Empresa" [value]="nome"></app-input>
+</section>
+<section>
+    <h5>
+        Vagas
+    </h5>
+    <app-input label="Vagas p/ Pessoas com Deficiência" [value]="vagasPd"></app-input>
+    <app-input label="Vagas p/ Ampla Concorrência" [value]="vagasAc"></app-input>
+</section>
+<section>
+    <h5>
+        Datas
+    </h5>
+    <app-input label="Homologado em:" [value]="homologacao"></app-input>
+    <app-input label="Criado em:" [value]="createdAt"></app-input>
+</section>
