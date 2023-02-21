@@ -1,22 +1,29 @@
-<h3>
-    Gabarito {{gabaritoId}}
-</h3>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Detalhes
-    </h5>
-    <app-input label="Prova" [value]="tipo"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Respostas
-    </h5>
-    <app-input label="Respostas" [value]="respostas"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Datas
-    </h5>
-    <app-input label="Atualizado em:" [value]="updatedAt"></app-input>
-    <app-input label="Criado em:" [value]="createdAt"></app-input>
-</section>
+<ng-container *ngIf="!isNewGabarito">
+    <h3>
+        Gabarito {{gabaritoId}}
+    </h3>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Detalhes
+        </h5>
+        <app-input label="Prova" [value]="tipo"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Respostas
+        </h5>
+        <app-input label="Respostas" [value]="respostas"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Datas
+        </h5>
+        <app-input label="Atualizado em:" [value]="updatedAt"></app-input>
+        <app-input label="Criado em:" [value]="createdAt"></app-input>
+    </section>
+</ng-container>
+<ng-container *ngIf="isNewGabarito">
+    <h3>
+        Gabarito {{gabaritoId}}
+    </h3>
+</ng-container>

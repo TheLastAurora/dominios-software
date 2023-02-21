@@ -3,6 +3,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import { ConcursoService } from 'src/app/services/concurso.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Gabarito } from 'src/app/models/gabarito.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gabaritos',
@@ -16,7 +17,8 @@ export class GabaritosComponent implements AfterViewInit {
   constructor(
     private service: ConcursoService,
     private toast: ToastService,
-    private splashScreen: SplashScreenService
+    private splashScreen: SplashScreenService,
+    private router: Router
   ) { }
 
   ngAfterViewInit(): void {
@@ -32,6 +34,10 @@ export class GabaritosComponent implements AfterViewInit {
         this.splashScreen.stop();
       }
     })
+  }
+
+  newGabarito(): void {
+    this.router.navigate([`admin/concurso/${this.service.concursoId}/gabarito/0`]);
   }
 
 }
