@@ -1,21 +1,19 @@
 from PIL import Image
-from skimage.transform import rotate
-from deskew import determine_skew
 import pytesseract
 import numpy as np
 from pathlib import Path
 import cv2
 
+
 pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 
 
 def init(src):
-    src = cv2.imread(
-        str(Path(__file__).resolve().parent) + '\\respostas\\' + src + '.jpg')
+    src = cv2.imread(str((src)))
     if (src is None):
         raise cv2.error
     else:
-        return OCR(src[:round(1/3*src.shape[0])]), OMR(src[round(1/3*src.shape[0]):round(12/13*src.shape[0])])
+        return OCR(src[:round(0.37*src.shape[0])]), OMR(src[round(0.37*src.shape[0]):round(12/13*src.shape[0])])
 
 ### OCR ###
 
@@ -79,6 +77,8 @@ def get_header(src, boxes):
                         1/2*sit.shape[1]), round(2/6*sit.shape[0]), round(1/4*sit.shape[1])))
                 case _:
                     pass
+    if (not len(header['tipo'])):
+        header['tipo'] = np.array([1])
     return header
 
 
@@ -87,6 +87,9 @@ def get_header(src, boxes):
 
 def OMR(src):
     img, boxes = set_bb_omr(src)
+    for i in boxes:
+        x,y,w,h = i
+        cv2.rectangle(src, (x, y), (x + w, y + h), (0,255,0), 3)
     return get_answers(img, boxes)
 
 
@@ -99,7 +102,6 @@ def add_mask_omr(src):
 
 
 def set_bb_omr(src):
-
     img = add_mask_omr(src)
     cnts, hierarchy = cv2.findContours(
         img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -115,7 +117,7 @@ def filter_contours(img, contours):
     for i in range(len(boxes)):
         bb_y = boxes[i][1]
         bb_area = boxes[i][2]*boxes[i][3]
-        if (bb_area < 0.082/100*img_area or bb_area > 0.2/100*img_area):
+        if (bb_area < 0.084/100*img_area or bb_area > 0.2/100*img_area):
             remove.append(i)
     boxes = np.delete(boxes, remove, 0)
     return img, boxes

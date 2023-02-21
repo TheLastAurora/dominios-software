@@ -35,7 +35,7 @@ model Candidato {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  @@map("tb_candidatos")
+  @@map("tb_candidato")
 }
 
 model Concurso {
@@ -50,7 +50,7 @@ model Concurso {
   gabaritos   Gabarito[]
   candidatos  Candidato[]
 
-  @@map("tb_concursos")
+  @@map("tb_concurso")
 }
 
 model Gabarito {
@@ -64,7 +64,7 @@ model Gabarito {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  @@map("tb_gabaritos")
+  @@map("tb_gabarito")
 }
 
 model User {
@@ -76,7 +76,7 @@ model User {
   updatedAt DateTime   @updatedAt
   gabarito  Gabarito[]
 
-  @@map("tb_users")
+  @@map("tb_user")
 }
 
 enum Genero {
