@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConcursoFormComponent } from './concurso-form.component';
 import { RespostasComponent } from './respostas/respostas.component';
+import { RespostasFormComponent } from './respostas/respostas-form/respostas-form.component';
 
 
 
@@ -13,7 +14,8 @@ import { RespostasComponent } from './respostas/respostas.component';
   declarations: [
     ConcursoFormComponent,
     ConcursoDetailsComponent,
-    RespostasComponent
+    RespostasComponent,
+    RespostasFormComponent
   ],
   imports: [
     CommonModule,

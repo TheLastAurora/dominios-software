@@ -1,3 +1,4 @@
+import { RespostasFormComponent } from './templates/admin/concursos/concurso-form/respostas/respostas-form/respostas-form.component';
 import { GabaritosFormComponent } from './templates/admin/concursos/concurso-form/gabaritos/gabaritos-form/gabaritos-form.component';
 import { RespostasComponent } from './templates/admin/concursos/concurso-form/respostas/respostas.component';
 import { GabaritosComponent } from './templates/admin/concursos/concurso-form/gabaritos/gabaritos.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
       {path: 'gabaritos', component: GabaritosComponent},
       {path: 'gabarito/:gabaritoId', component: GabaritosFormComponent},
       {path: 'respostas', component: RespostasComponent},
+      {path: 'candidato/:candidatoId', component: RespostasFormComponent},
       {path: '', redirectTo: 'details', pathMatch: 'full'}
     ]},
     {path: '', redirectTo: 'concursos', pathMatch: 'full'}
