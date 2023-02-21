@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Credentials } from "../models/user.model";
 import * as jwt from "jsonwebtoken";
+import { Decoded } from "../models/decoded.model";
 
 class Auth {
 
@@ -27,9 +28,9 @@ class Auth {
         }
     }
 
-    public decode(token: string){
-        let response: jwt.JwtPayload | String | undefined = '';
-        jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=> {
+    public decode(token: string): jwt.JwtPayload | String | undefined | Decoded {
+        let response: jwt.JwtPayload | String | undefined | Decoded = '';
+        jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=>{
             response = decoded;
         });
         return response;

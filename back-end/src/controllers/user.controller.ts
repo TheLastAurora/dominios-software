@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import { Credentials, User } from "../models/user.model";
 import encrypt from "../functions/encrypt";
 import auth from '../middlewares/auth';
+import { Decoded } from '../models/decoded.model';
+import * as jwt from "jsonwebtoken";
 
 class UserController {
 
@@ -119,7 +121,8 @@ class UserController {
     public async getCurrentUser(req: Request, res: Response): Promise<Response> {
         try {
             const token = req.body;
-            const decoded = auth.decode(token.token);
+            const decoded: jwt.JwtPayload | String | undefined | Decoded = auth.decode(token.token) as Decoded;
+            decoded.credentials.senha = '';
             return res.status(200).json(decoded);
         } catch(error) {
             return res.status(500).json({message: 'Error'});
