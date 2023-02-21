@@ -116,6 +116,16 @@ class UserController {
         }
     }
 
+    public async getCurrentUser(req: Request, res: Response): Promise<Response> {
+        try {
+            const token = req.body;
+            const decoded = auth.decode(token.token);
+            return res.status(200).json(decoded);
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
+    }
+
 }
 
 export default new UserController();

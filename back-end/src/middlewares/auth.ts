@@ -28,9 +28,11 @@ class Auth {
     }
 
     public decode(token: string){
+        let response: jwt.JwtPayload | String | undefined = '';
         jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=> {
-            return decoded;
+            response = decoded;
         });
+        return response;
     }
 
 }
