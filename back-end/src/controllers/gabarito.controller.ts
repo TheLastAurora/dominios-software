@@ -7,6 +7,13 @@ class GabaritoController {
     public async create(req: Request, res: Response): Promise<Response>{
         try{
             const gabarito: Gabarito = req.body;
+            const existsByTipo = await prisma.gabarito.findMany({
+                where: {
+                    tipo: gabarito.tipo
+                }
+            })
+            if(existsByTipo.length > 0)
+                return res.status(401).json({message: 'Tipo de prova já existe'});
             const newGabarito = await prisma.gabarito.create({
                 data: gabarito
             });
