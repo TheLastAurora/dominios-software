@@ -8,11 +8,11 @@
                 <label>ID</label>
                 <input type="text" [formControl]="id">
             </div>
-            <div *ngIf="type == 'concurso'">
+            <div *ngIf="type == 'concurso' || type == 'concursos'">
                 <label>Cargo</label>
                 <input type="text" [formControl]="cargo">
             </div>
-            <div *ngIf="type == 'concurso'">
+            <div *ngIf="type == 'concurso' || type == 'concursos'">
                 <label>Empresa</label>
                 <input type="text" [formControl]="empresa">
             </div>
@@ -42,14 +42,14 @@
 <div class="list">
     <ul>
         <li class="id">ID</li>
-        <li *ngIf="type == 'concurso'" class="name">Cargo</li>
-        <li *ngIf="type == 'concurso'" class="name">Empresa</li>
+        <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">Cargo</li>
+        <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">Empresa</li>
         <li *ngIf="type == 'gabarito'" class="name">Prova</li>
         <li *ngIf="type == 'gabarito'" class="name"></li>
         <li *ngIf="type == 'candidato'" class="name">Nome</li>
         <li *ngIf="type == 'candidato'" class="date">CPF</li>
         <li *ngIf="type == 'candidato'" class="nota">Nota</li>
-        <li class="date">Data de Criação</li>
+        <li class="date" *ngIf="type != 'concursos'">Data de Criação</li>
     </ul>
     <ng-container *ngFor="let option of data">
         <app-admin-list-option [data]="option" [type]="type" (event)="goToTab(option.id)"></app-admin-list-option>

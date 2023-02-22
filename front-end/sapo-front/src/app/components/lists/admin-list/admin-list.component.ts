@@ -131,6 +131,10 @@ export class AdminListComponent implements OnInit {
       case 'concurso':
         this.router.navigate([`admin/${this.type}/${id}`]);
         break;
+      case 'concursos':
+        this.concursoService.setConcursoId(Number(id));
+        this.router.navigate([`public/ranking`]);
+        break;
       default:
         this.router.navigate([`admin/concurso/${this.concursoService.concursoId}/${this.type}/${id}`]);
     }

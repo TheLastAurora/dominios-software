@@ -2,10 +2,10 @@
     <li class="id">
         {{data.id}}
     </li>
-    <li *ngIf="type == 'concurso'" class="name">
+    <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">
         {{data.cargo}}
     </li>
-    <li *ngIf="type != 'gabarito'" class="name">
+    <li *ngIf="type != 'gabarito'" [class]="type == 'concursos' ? 'rank' : 'name'">
         {{data.nome}}
     </li>
     <li *ngIf="type == 'gabarito'" class="name">
@@ -20,7 +20,7 @@
     <li *ngIf="type == 'candidato'" class="nota">
         {{data.nota}}
     </li>
-    <li class="date">
+    <li class="date" *ngIf="type != 'concursos'">
         {{data.createdAt}}
     </li>
 </ul>
