@@ -4,8 +4,11 @@ footer {
     justify-content: center;
     align-items: center;
     height: 24vh;
-    background-color:   #1f618d;
-
+    max-height: 24vh;
+    position:relative;
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(31,97,141,1) 100%, rgba(0,212,255,1) 100%); 
     div {
         margin-top: 2em;
         img {
@@ -14,8 +17,10 @@ footer {
     }
 
     hr {
-        margin: 1em 1em;
-        height: 5px;
+        margin: 2em 2em;
+        height: 1em;
+        max-height: 5px;
+        min-height: 3px;
         background-color: black;
         border: none;
         border-radius: 4px;
