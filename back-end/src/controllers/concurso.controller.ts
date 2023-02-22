@@ -13,9 +13,9 @@ class ConcursoController {
             await prisma.concurso.create({
                 data: concurso
             });
-            return res.status(201).json({message: 'Concurso created'});
+            return res.status(201).json({message: 'Concurso criado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -28,10 +28,10 @@ class ConcursoController {
                 },
             });
             if(!concurso)
-                return res.status(400).json({message: 'Concurso not found'});
+                return res.status(400).json({message: 'Concurso não encontrado'});
             return res.status(200).json(concurso);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
         
     }
@@ -41,7 +41,7 @@ class ConcursoController {
             const concursos: Concurso[] = await prisma.concurso.findMany();
             return res.status(200).json(concursos);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -55,7 +55,7 @@ class ConcursoController {
             });
             return res.status(200).json(candidatos);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -69,7 +69,7 @@ class ConcursoController {
             });
             return res.status(200).json(gabaritos);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -86,7 +86,7 @@ class ConcursoController {
             })
             return res.status(200).json(concursos);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -99,7 +99,7 @@ class ConcursoController {
                 },
             });
             if(!concurso)
-                return res.status(400).json({message: 'Concurso not found'});
+                return res.status(400).json({message: 'Concurso não encontrado'});
             const concursoData: Concurso = req.body;
             concursoData.homologacao = new Date(concursoData.homologacao);
             await prisma.concurso.update({
@@ -108,9 +108,9 @@ class ConcursoController {
                 },
                 data: concursoData
             });
-            return res.status(201).json({message: 'Concurso updated'});
+            return res.status(201).json({message: 'Concurso atualizado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
         
     }
@@ -119,7 +119,7 @@ class ConcursoController {
         try {
             const file = req.file;
             if(!file)
-                return res.status(400).json({message: 'No File received'});
+                return res.status(400).json({message: 'Arquivo não recebido'});
             return res.status(201).json(file);
         } catch(error) {
             return res.status(500).json(error);
@@ -135,15 +135,15 @@ class ConcursoController {
                 },
             });
             if(!concurso)
-                return res.status(400).json({message: 'Concurso not found'});
+                return res.status(400).json({message: 'Concurso não encontrado'});
             await prisma.concurso.delete({
                 where: {
                     id: id,
                 },
             });
-            return res.status(200).json({message: 'Concurso deleted'});
+            return res.status(200).json({message: 'Concurso deletado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
         
     }

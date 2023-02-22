@@ -41,9 +41,9 @@ class GabaritoController {
                     },
                 },
             });
-            return res.status(201).json({message: 'Gabarito created'});
+            return res.status(201).json({message: 'Gabarito criado com sucesso'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -56,10 +56,10 @@ class GabaritoController {
                 },
             });
             if(!gabarito)
-                return res.status(401).json({message: "Gabarito not found"});
+                return res.status(401).json({message: "Gabarito não encontrado"});
             return res.status(200).json(gabarito);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -72,7 +72,7 @@ class GabaritoController {
                 },
             });
             if(!gabarito)
-                return res.status(401).json({message: "Gabarito not found"});
+                return res.status(401).json({message: "Gabarito não encontrado"});
             const gabaritoData: Gabarito = req.body;
             await prisma.gabarito.update({
                 where: {
@@ -80,9 +80,9 @@ class GabaritoController {
                 },
                 data: gabaritoData
             });
-            return res.status(200).json({message: "Gabarito updated"});
+            return res.status(200).json({message: "Gabarito atualizado"});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -95,15 +95,15 @@ class GabaritoController {
                 },
             });
             if(!gabarito)
-                return res.status(401).json({message: "Gabarito not found"});
+                return res.status(401).json({message: "Gabarito não encontrado"});
             await prisma.gabarito.delete({
                 where: {
                     id: id,
                 },
             });
-            return res.status(200).json({message: 'Gabarito deleted'});
+            return res.status(200).json({message: 'Gabarito deletado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 

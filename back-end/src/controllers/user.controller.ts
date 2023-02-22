@@ -17,14 +17,14 @@ class UserController {
                 },
             });
             if(userExists)
-                return res.status(401).json({message: 'User login already taken'});
+                return res.status(401).json({message: 'Já existe usuário com o login cadastrado'});
             user.senha = await encrypt.hash(user.senha);
             await prisma.user.create({
                 data: user,
             });
-            return res.status(201).json({message: 'User created'});
+            return res.status(201).json({message: 'Usuário criado'});
         } catch(error) {
-            return res.status(500).send({message: 'Bad request'});
+            return res.status(500).send({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -37,11 +37,11 @@ class UserController {
                 },
             });
             if(!user)
-                return res.status(401).json({message: 'User not found'});
+                return res.status(401).json({message: 'Usuário não encontrado'});
             user.senha = '';
             return res.status(200).json(user);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -54,7 +54,7 @@ class UserController {
                 },
             });
             if(!user)
-                return res.status(401).json({message: 'User not found'});
+                return res.status(401).json({message: 'Usuário não encontrado'});
             const userData: User = req.body;
             const userWithLogin = await prisma.user.findUnique({
                 where: {
@@ -62,7 +62,7 @@ class UserController {
                 },
             });
             if(userWithLogin && userWithLogin.login != userData.login)
-                return res.status(401).json({message: 'User login already taken'});
+                return res.status(401).json({message: 'Já existe usuário com o login cadastrado'});
             userData.senha = await encrypt.hash(userData.senha);
             await prisma.user.update({
                 where: {
@@ -70,9 +70,9 @@ class UserController {
                 },
                 data: userData,
             });
-            return res.status(200).json({message: 'User updated'});
+            return res.status(200).json({message: 'Usuário deletado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -85,15 +85,15 @@ class UserController {
                 },
             });
             if(!user)
-                return res.status(401).json({message: 'User not found'});
+                return res.status(401).json({message: 'Usuário não encontrado'});
             await prisma.user.delete({
                 where: {
                     id: id
                 },
             });
-            return res.status(200).json({message: 'User deleted'});
+            return res.status(200).json({message: 'Usuário deletado'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -106,15 +106,15 @@ class UserController {
                 },
             });
             if(!user)
-                return res.status(400).json({message: "User not found"});
+                return res.status(400).json({message: "Usuário não encontrado"});
             if(await encrypt.compare(credentials.senha, user.senha)){
                 const token = auth.sign(credentials);
                 return res.status(200).json(token);
             }
             else
-                return res.status(403).json({message: 'unauth'});
+                return res.status(403).json({message: 'Credenciais inválidas'});
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 
@@ -125,7 +125,7 @@ class UserController {
             decoded.credentials.senha = '';
             return res.status(200).json(decoded);
         } catch(error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 

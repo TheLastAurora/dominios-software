@@ -25,7 +25,6 @@ router.post('/candidato', Auth.verify, CandidatoController.create);
 router.get('/candidato/:id', Auth.verify, CandidatoController.read);
 router.put('/candidato/:id', Auth.verify, CandidatoController.update);
 router.delete('/candidato/:id', Auth.verify, CandidatoController.delete);
-router.put('/candidato/:id/file', Auth.verify, CandidatoController.sendFile);
 
 //Gabarito Routes
 router.post('/gabarito', Auth.verify, GabaritoController.create);
