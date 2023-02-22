@@ -1,5 +1,19 @@
 @import './colors.scss';
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: #edeced;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: #edeced;
+    border-radius: 20px;
+    border: 2px solid #c1c1c1;
+}
+
 section.form-section {
     width: calc(100% - 16px);
     margin: 48px 8px;
