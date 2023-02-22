@@ -1,47 +1,49 @@
-<h3>
-    Candidato {{candidatoId}}
-</h3>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Dados Pessoais
-    </h5>
-    <app-input label="Nome" [value]="nome"></app-input>
-    <app-input label="CPF" [value]="cpf"></app-input>
-    <app-input label="Gênero" [value]="genero"></app-input>
-    <app-input label="Data de Nascimento" [value]="dataNascimento"></app-input>
-    <app-input label="RG" [value]="rg"></app-input>
-    <app-input label="Data de Expedição" [value]="dataExpedicao"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Parentesco
-    </h5>
-    <app-input label="Nome do Mãe" [value]="nomeMae"></app-input>
-    <app-input label="Nome do Pai" [value]="nomePai"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Contato
-    </h5>
-    <app-input label="E-mail" [value]="email"></app-input>
-    <app-input label="Telefone" [value]="telefone"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Endereço
-    </h5>
-    <app-input label="CEP" [value]="cep"></app-input>
-    <app-input label="UF" [value]="uf"></app-input>
-    <app-input label="Município" [value]="codMunicipio"></app-input>
-    <app-input label="Bairro" [value]="bairro"></app-input>
-    <app-input label="Logradouro" [value]="logradouro"></app-input>
-    <app-input label="Complemento" [value]="complemento"></app-input>
-    <app-input label="Número" [value]="numero"></app-input>
-</section>
-<section class="form-section">
-    <h5 class="form-section-header">
-        Datas
-    </h5>
-    <app-input label="Atualizado em:" [value]="updatedAt"></app-input>
-    <app-input label="Criado em:" [value]="createdAt"></app-input>
-</section>
+<div>
+    <h3>
+        Candidato {{candidatoId}}
+    </h3>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Dados Pessoais
+        </h5>
+        <app-input label="Nome" [value]="nome"></app-input>
+        <app-input label="CPF" [value]="cpf"></app-input>
+        <app-input label="Gênero" [value]="genero"></app-input>
+        <app-input label="Data de Nascimento" [value]="dataNascimento"></app-input>
+        <app-input label="RG" [value]="rg"></app-input>
+        <app-input label="Data de Expedição" [value]="dataExpedicao"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Parentesco
+        </h5>
+        <app-input label="Nome do Mãe" [value]="nomeMae"></app-input>
+        <app-input label="Nome do Pai" [value]="nomePai"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Contato
+        </h5>
+        <app-input label="E-mail" [value]="email"></app-input>
+        <app-input label="Telefone" [value]="telefone"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Endereço
+        </h5>
+        <app-input label="CEP" [value]="cep"></app-input>
+        <app-input label="UF" [value]="uf"></app-input>
+        <app-input label="Município" [value]="codMunicipio"></app-input>
+        <app-input label="Bairro" [value]="bairro"></app-input>
+        <app-input label="Logradouro" [value]="logradouro"></app-input>
+        <app-input label="Complemento" [value]="complemento"></app-input>
+        <app-input label="Número" [value]="numero"></app-input>
+    </section>
+    <section class="form-section">
+        <h5 class="form-section-header">
+            Datas
+        </h5>
+        <app-input label="Atualizado em:" [value]="updatedAt"></app-input>
+        <app-input label="Criado em:" [value]="createdAt"></app-input>
+    </section>    
+</div>

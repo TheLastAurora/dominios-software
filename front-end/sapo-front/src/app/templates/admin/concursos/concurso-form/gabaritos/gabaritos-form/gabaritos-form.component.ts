@@ -4,6 +4,8 @@ import { Component, AfterViewInit } from '@angular/core';
 import { ToastService } from 'src/app/services/toast.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { Gabarito } from 'src/app/models/gabarito.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ConcursoService } from 'src/app/services/concurso.service';
 
 @Component({
   selector: 'app-gabaritos-form',
@@ -11,6 +13,8 @@ import { Gabarito } from 'src/app/models/gabarito.model';
   styleUrls: ['./gabaritos-form.component.scss']
 })
 export class GabaritosFormComponent implements AfterViewInit {
+
+  gabaritoForm!: FormGroup;
 
   gabaritoId?: string | null;
 
@@ -21,16 +25,15 @@ export class GabaritosFormComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private service: GabaritoService,
+    private concursoService: ConcursoService,
     private toast: ToastService,
-    private splashScreen: SplashScreenService
+    private splashScreen: SplashScreenService,
+    private fb: FormBuilder
   ) { }
 
   ngAfterViewInit(): void {
       this.gabaritoId = this.route.snapshot.paramMap.get('gabaritoId');
-      if(this.gabaritoId && this.gabaritoId != '0'){
-        this.isNewGabarito = false;
-        this.getGabarito();
-      }
+      this.checkComponentState();
   }
 
   get tipo(): string {
@@ -47,6 +50,30 @@ export class GabaritosFormComponent implements AfterViewInit {
 
   get createdAt(): string {
     return String(this.gabarito?.createdAt);
+  }
+
+  get tipoControl(): FormControl {
+    return this.gabaritoForm?.controls['tipo'] as FormControl;
+  }
+
+  get respostasControl(): FormControl {
+    return this.gabaritoForm?.controls['respostas'] as FormControl;
+  }
+
+  checkComponentState(): void {
+    if(this.gabaritoId != '0'){
+      this.isNewGabarito = !this.isNewGabarito;
+      this.getGabarito();
+    }
+    else
+      this.createForm();
+  }
+
+  createForm(): void {
+    this.gabaritoForm = this.fb.group({
+      tipo: ['', Validators.required],
+      respostas: ['', Validators.required]
+    })
   }
 
   getGabarito(): void {
