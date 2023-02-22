@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import prisma from "../database/prisma";
 import { Concurso } from "../models/concurso.model";
-import { Gabarito } from "../models/gabarito.model";
 import { Candidato } from '../models/candidato.model';
+import decompress from 'decompress';
+import path from 'path';
 
 class ConcursoController {
 
@@ -120,6 +121,7 @@ class ConcursoController {
             const file = req.file;
             if(!file)
                 return res.status(400).json({message: 'Arquivo não recebido'});
+            await decompress(path.resolve(`./../eval-app/${file.filename}`), path.resolve('./../eval-app/cartoes'));
             return res.status(201).json(file);
         } catch(error) {
             return res.status(500).json(error);
