@@ -1,7 +1,10 @@
-export interface Gabarito {
-    id?: number,
+export interface GabaritoAttrs {
     tipo: string,
-    respostas?: JSON,
+    respostas?: JSON
+}
+
+export interface Gabarito extends GabaritoAttrs {
+    id?: number,
     userId: number,
     concursoId: number,
     createdAt?: Date,

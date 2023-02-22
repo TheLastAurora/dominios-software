@@ -1,6 +1,7 @@
+import { GabaritoAttrs } from './../../../../../../models/gabarito.model';
 import { GabaritoService } from './../../../../../../services/gabarito.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/services/toast.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { Gabarito } from 'src/app/models/gabarito.model';
@@ -12,15 +13,18 @@ import { ConcursoService } from 'src/app/services/concurso.service';
   templateUrl: './gabaritos-form.component.html',
   styleUrls: ['./gabaritos-form.component.scss']
 })
-export class GabaritosFormComponent implements AfterViewInit {
-
-  options: string[] = ['A', 'B', 'C', 'D', 'E'];
+export class GabaritosFormComponent implements OnInit {
 
   gabaritoForm!: FormGroup;
 
   gabaritoId?: string | null;
 
   gabarito?: Gabarito;
+
+  gabaritoAttrs: GabaritoAttrs = {
+    tipo: '',
+    respostas: JSON.parse('{}')
+  };
 
   isNewGabarito?: boolean = true;
 
@@ -34,9 +38,11 @@ export class GabaritosFormComponent implements AfterViewInit {
     private router: Router
   ) { }
 
-  ngAfterViewInit(): void {
-      this.gabaritoId = this.route.snapshot.paramMap.get('gabaritoId');
-      this.checkComponentState();
+  ngOnInit(): void {
+    this.splashScreen.start();
+    this.gabaritoId = this.route.snapshot.paramMap.get('gabaritoId');
+    this.checkComponentState();
+    this.splashScreen.stop();
   }
 
   get tipo(): string {
@@ -101,9 +107,9 @@ export class GabaritosFormComponent implements AfterViewInit {
 
   submit(): void {
     this.splashScreen.start();
-    this.gabarito!.tipo = this.tipoControl.value;
-    this.gabarito!.respostas = this.respostasControl.value;
-    this.service.create(this.gabarito as Gabarito).subscribe({
+    this.gabaritoAttrs.tipo = this.tipoControl.value;
+    this.gabaritoAttrs.respostas = JSON.parse(this.respostasControl.value);
+    this.service.create(this.gabaritoAttrs as Gabarito).subscribe({
       next: data => {
         this.toast.success(data.message);
         this.splashScreen.stop();

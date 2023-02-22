@@ -12,7 +12,7 @@
         <h5 class="form-section-header">
             Respostas
         </h5>
-        <app-input label="Respostas" [value]="respostas"></app-input>
+        <app-input label="Respostas" [value]="respostas" type="json"></app-input>
     </section>
     <section class="form-section">
         <h5 class="form-section-header">
@@ -23,19 +23,12 @@
     </section>
 </ng-container>
 <ng-container *ngIf="isNewGabarito">
-    <h3>
-        Gabarito {{gabaritoId}}
-    </h3>
-    <form [formGroup]="gabaritoForm">
-        <div>
-            <label>Tipo de prova:</label>
-            <select [formControl]="tipoControl">
-                <option *ngFor="let option of options" [value]="option">{{option}}</option>
-            </select>
-        </div>
-        <textarea rows="20" formControlName="respostasControl" (keyup)="print()"></textarea>
-    </form>
+    <h4>
+        Adicionar Gabarito
+    </h4>
     <div>
+        <app-char-input label="Tipo de Prova:" [control]="tipoControl"></app-char-input>
+        <app-text-area-input label="Respostas" [control]="respostasControl"></app-text-area-input>
         <app-flat-button buttonText="Adicionar" (event)="submit()"></app-flat-button>
     </div>
 </ng-container>

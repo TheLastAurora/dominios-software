@@ -2,7 +2,10 @@
     <h6>
         {{label}}
     </h6>
-    <p>
+    <p *ngIf="type != 'json'">
         {{value}}
+    </p>
+    <p *ngIf="type == 'json'">
+        {{value | json}}
     </p>
 </div>
