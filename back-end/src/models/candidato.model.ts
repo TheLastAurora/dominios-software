@@ -19,7 +19,7 @@ export interface Candidato {
     uf: Uf,
     email: string,
     telefone: string,
-    nota: number,
+    nota: number | null,
     concursoID: number,
     createdAt?: Date,
     updatedAt?: Date

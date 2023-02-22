@@ -1,6 +1,6 @@
 @import '../../../../styles/colors.scss';
 
-div {
+div.list {
     width: 100%;
     border: 1px solid $light-grey;
     border-radius: 8px;
@@ -23,6 +23,45 @@ div {
             &.date {
                 width: 20%;
             }
+        }
+    }
+}
+
+div.filter {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 0 6px $light-grey;
+    h5 {
+        margin-bottom: 32px;
+    }
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        div.fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            label {
+                font-size: 18px;
+                letter-spacing: 1px;
+                display: block;
+            }
+            input {
+                width: 200px;
+                padding: 8px;
+                border: 0;
+                border-bottom: 1px solid $light-grey;
+            }
+        }
+        div.actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-end;
         }
     }
 }
