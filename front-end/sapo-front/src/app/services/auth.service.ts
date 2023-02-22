@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post<string>(this.apiUrl, body);
   }
 
+  getCurrentUser(): Observable<any> {
+    return this.http.put<string>('http:localhost:8090/user', {token: this.token}, {'headers': this.getRequestHeaders()});
+  }
+
   logout(): void {
     localStorage.removeItem('jwt');
     this.router.navigate(['auth/login']);

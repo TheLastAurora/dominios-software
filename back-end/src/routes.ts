@@ -16,7 +16,7 @@ router.get('/user/:id', Auth.verify, UserController.read);
 router.put('/user/:id', Auth.verify, UserController.update);
 router.delete('/user/:id', Auth.verify, UserController.delete);
 router.post('/login', UserController.authenticate);
-router.get('/user', Auth.verify, UserController.getCurrentUser);
+router.put('/user', Auth.verify, UserController.getCurrentUser);
 
 //Candidato Routes
 router.post('/candidato', Auth.verify, CandidatoController.create);
