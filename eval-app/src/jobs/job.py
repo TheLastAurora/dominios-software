@@ -114,7 +114,7 @@ def append_error():
 
 def run_job(spark, config, inst):
     logging.basicConfig(filename='ocr.log', format='(%(asctime)s) %(levelname)s:%(message)s', datefmt='%d/%m/%Y %I:%M:%S %p', level=logging.ERROR)
-    upd_query = '''UPDATE tb_candidatos tc SET nota=%(nota)s WHERE id=%(id)s'''
+    upd_query = '''UPDATE tb_candidato tc SET nota=%(nota)s WHERE id=%(id)s'''
     files = _read_answers(config)
     connect_input(spark, config)
     connection = connect_output(config)
