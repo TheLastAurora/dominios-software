@@ -30,8 +30,8 @@
             </div>
         </div>
         <div class="actions">
-            <app-flat-button buttonText="LIMPAR"></app-flat-button>
-            <app-flat-button buttonText="FILTRAR"></app-flat-button>
+            <app-flat-button buttonText="LIMPAR" (event)="clearFilter()"></app-flat-button>
+            <app-flat-button buttonText="FILTRAR" (event)="applyFilter()"></app-flat-button>
         </div>
     </div>
 </div>

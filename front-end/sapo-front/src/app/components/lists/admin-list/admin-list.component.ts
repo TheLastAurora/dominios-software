@@ -12,6 +12,8 @@ export class AdminListComponent implements OnInit {
 
   storedData: any;
 
+  isFiltered: boolean = false;
+
   filterForm?: FormGroup;
 
   @Input()
@@ -63,6 +65,54 @@ export class AdminListComponent implements OnInit {
       cpf: [''],
       tipo: [''],
     })
+  }
+
+  clearFilter(): void {
+    this.id.setValue('');
+    this.cargo.setValue('');
+    this.empresa.setValue('');
+    this.nome.setValue('');
+    this.cpf.setValue('');
+    this.tipo.setValue('');
+    this.isFiltered = false;
+    this.data = this.storedData;
+  }
+
+  applyFilter(): void {
+    if(this.isFiltered)
+      this.data = this.storedData;
+    this.storedData = this.data;
+    if(this.id.value && this.id.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return val.id == this.id.value;
+      })
+    }
+    if(this.cargo.value && this.cargo.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return String(val.cargo).match(this.cargo.value);
+      })
+    }
+    if(this.empresa.value && this.empresa.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return String(val.empresa).match(this.empresa.value);
+      })
+    }
+    if(this.nome.value && this.nome.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return String(val.nome).match(this.nome.value);
+      })
+    }
+    if(this.cpf.value && this.cpf.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return String(val.cpf).match(this.cpf.value);
+      })
+    }
+    if(this.tipo.value && this.tipo.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return String(val.tipo).match(this.tipo.value);
+      })
+    }
+    this.isFiltered = true;
   }
 
   goToTab(id: string): void{
