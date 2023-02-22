@@ -9,10 +9,12 @@ header {
     background-color: $blue-default;
     div {
         display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
         img {
             width: 36px;
             height: 36px;
-            margin-right: 16px;
         }
         h3 {
             color: white

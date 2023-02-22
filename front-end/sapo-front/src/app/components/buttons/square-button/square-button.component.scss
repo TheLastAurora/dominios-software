@@ -6,6 +6,7 @@ button {
     background-color: $white;
     border: 1px $blue-dark solid;
     border-radius: 4px;
+    cursor: pointer;
     &:hover {
         background-color: $blue-dark;
         transition: 0.2s;
