@@ -115,6 +115,17 @@ class ConcursoController {
         
     }
 
+    public async insertFile(req: Request, res: Response): Promise<Response>{
+        try {
+            const file = req.file;
+            if(!file)
+                return res.status(400).json({message: 'No File received'});
+            return res.status(201).json(file);
+        } catch(error) {
+            return res.status(500).json(error);
+        }
+    }
+
     public async delete(req: Request, res: Response): Promise<Response>{
         try {
             const id: number = Number(req.params.id);

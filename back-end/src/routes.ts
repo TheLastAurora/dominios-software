@@ -4,10 +4,10 @@ import CandidatoController from "./controllers/candidato.controller";
 import ConcursoController from "./controllers/concurso.controller";
 import GabaritoController from "./controllers/gabarito.controller";
 import Auth from "./middlewares/auth";
-import multerConfig from '../src/config/multer';
+import { config } from '../src/config/multer';
 import multer from 'multer'
 
-const upload = multer(multerConfig);
+const upload = multer({storage: config});
 const router = Router();
 //Default Route
 router.get('/', (req: Request, res: Response)=> res.status(200).json({status: "SAPO API Online"}));
@@ -41,6 +41,7 @@ router.get('/concurso/:id/candidatos', Auth.verify, ConcursoController.readConcu
 router.get('/concurso/:id/gabaritos', Auth.verify, ConcursoController.readConcursoGabaritos);
 router.get('/concursos', ConcursoController.readConcludedConcursos);
 router.put('/concurso/:id', Auth.verify, ConcursoController.update);
+router.put('/concurso/:id/files', Auth.verify, upload.single('file'), ConcursoController.insertFile);
 router.delete('/concurso/:id', Auth.verify, ConcursoController.delete);
 
 export default router;
