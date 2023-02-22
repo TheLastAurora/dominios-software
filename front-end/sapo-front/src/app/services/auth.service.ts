@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<any> {
-    return this.http.put<string>('http:localhost:8090/user', {token: this.token}, {'headers': this.getRequestHeaders()});
+    return this.http.put<string>('http://localhost:8090/user', {token: this.token}, {'headers': this.getRequestHeaders()});
   }
 
   logout(): void {
