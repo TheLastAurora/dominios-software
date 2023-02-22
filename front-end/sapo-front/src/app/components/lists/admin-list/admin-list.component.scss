@@ -20,6 +20,9 @@ div.list {
             &.name {
                 width: 30%;
             }
+            &.nota {
+                width: 20%;
+            }
             &.date {
                 width: 20%;
             }
@@ -53,8 +56,16 @@ div.filter {
             input {
                 width: 200px;
                 padding: 8px;
+                font-size: 16px;
+                letter-spacing: 1px;
                 border: 0;
                 border-bottom: 1px solid $light-grey;
+                transition: 0.2s;
+                &:focus {
+                    outline: 0;
+                    border-bottom: 1.5px solid $light-grey;
+                    transition: 0.1s;
+                }
             }
         }
         div.actions {

@@ -56,6 +56,10 @@ export class AdminListComponent implements OnInit {
     return this.filterForm?.controls['tipo'] as FormControl;
   }
 
+  get nota(): FormControl {
+    return this.filterForm?.controls['nota'] as FormControl;
+  }
+
   createFilterForm(): void {
     this.filterForm = this.fb.group({
       id: [''],
@@ -64,6 +68,7 @@ export class AdminListComponent implements OnInit {
       nome: [''],
       cpf: [''],
       tipo: [''],
+      nota: ['']
     })
   }
 
@@ -74,6 +79,7 @@ export class AdminListComponent implements OnInit {
     this.nome.setValue('');
     this.cpf.setValue('');
     this.tipo.setValue('');
+    this.nota.setValue('');
     this.isFiltered = false;
     this.data = this.storedData;
   }
@@ -110,6 +116,11 @@ export class AdminListComponent implements OnInit {
     if(this.tipo.value && this.tipo.value != ''){
       this.data = this.data.filter((val: any) => {
         return String(val.tipo).match(this.tipo.value);
+      })
+    }
+    if(this.nota.value && this.nota.value != ''){
+      this.data = this.data.filter((val: any) => {
+        return val.nota == this.nota.value;
       })
     }
     this.isFiltered = true;

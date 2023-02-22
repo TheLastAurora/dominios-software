@@ -28,6 +28,10 @@
                 <label>CPF</label>
                 <input type="text" [formControl]="cpf">
             </div>
+            <div *ngIf="type == 'candidato'">
+                <label>Nota</label>
+                <input type="text" [formControl]="nota">
+            </div>
         </div>
         <div class="actions">
             <app-flat-button buttonText="LIMPAR" (event)="clearFilter()"></app-flat-button>
@@ -43,7 +47,8 @@
         <li *ngIf="type == 'gabarito'" class="name">Prova</li>
         <li *ngIf="type == 'gabarito'" class="name"></li>
         <li *ngIf="type == 'candidato'" class="name">Nome</li>
-        <li *ngIf="type == 'candidato'" class="name">CPF</li>
+        <li *ngIf="type == 'candidato'" class="date">CPF</li>
+        <li *ngIf="type == 'candidato'" class="nota">Nota</li>
         <li class="date">Data de Criação</li>
     </ul>
     <ng-container *ngFor="let option of data">

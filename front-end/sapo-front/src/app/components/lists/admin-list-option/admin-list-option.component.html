@@ -14,8 +14,11 @@
     <li *ngIf="type == 'gabarito'" class="name">
         
     </li>
-    <li *ngIf="type == 'candidato'" class="name">
+    <li *ngIf="type == 'candidato'" class="date">
         {{data.cpf}}
+    </li>
+    <li *ngIf="type == 'candidato'" class="nota">
+        {{data.nota}}
     </li>
     <li class="date">
         {{data.createdAt}}
