@@ -3,6 +3,7 @@ import prisma from "../database/prisma";
 import { Concurso } from "../models/concurso.model";
 import { Candidato } from '../models/candidato.model';
 import decompress from 'decompress';
+import {PythonShell} from 'python-shell';
 import path from 'path';
 
 class ConcursoController {
@@ -122,6 +123,7 @@ class ConcursoController {
             if(!file)
                 return res.status(400).json({message: 'Arquivo não recebido'});
             await decompress(path.resolve(`./../eval-app/${file.filename}`), path.resolve('./../eval-app/cartoes'));
+            PythonShell.run('../../dominios-software/eval-app/src/main.py', {args: ['--inst', '50']});
             return res.status(201).json(file);
         } catch(error) {
             return res.status(500).json(error);
