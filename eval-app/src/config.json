@@ -20,8 +20,8 @@
                     "port": "",
                     "database": "main",
                     "tables": [
-                        "tb_gabarito",
-                        "tb_concurso"
+                        "tb_gabaritos",
+                        "tb_concursos"
                     ]
                 },
                 "auth": {

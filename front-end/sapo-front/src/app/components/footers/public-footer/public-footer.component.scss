@@ -1,0 +1,54 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 24vh;
+    background-color:   #1f618d;
+
+    div {
+        margin-top: 2em;
+        img {
+            width: 18vw;
+        }
+    }
+
+    hr {
+        margin: 1em 1em;
+        height: 5px;
+        background-color: black;
+        border: none;
+        border-radius: 4px;
+        width: 40vw;
+    }
+
+    section {
+        display: flex;
+        margin: 16px;
+        button {
+            display: block;
+            width: 100%;
+            height: auto;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+            margin: 10px;
+            img {
+                width: 1.5vw;
+            }
+        }
+    }
+
+    #contatos {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    #lorem {
+        font-size: 0.9em;
+        margin-bottom: 2em;
+    }
+}
