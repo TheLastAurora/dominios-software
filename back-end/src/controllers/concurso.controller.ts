@@ -73,6 +73,23 @@ class ConcursoController {
         }
     }
 
+    public async readConcludedConcursos(req: Request, res: Response): Promise<Response>{
+        try {
+            const concursos = await prisma.concurso.findMany({
+                where: {
+                    candidatos: {
+                        every: {
+                            nota: 1
+                        }
+                    }
+                }
+            })
+            return res.status(200).json(concursos);
+        } catch(error) {
+            return res.status(500).json({message: 'Error'});
+        }
+    }
+
     public async update(req: Request, res: Response): Promise<Response>{
         try {
             const id: number = Number(req.params.id);

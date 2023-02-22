@@ -35,6 +35,10 @@ export class ConcursoService {
     return this.http.get(`${this.apiUrl}/${this.concursoId}/gabaritos`, {'headers': this.authService.getRequestHeaders()});
   }
 
+  getConcludedConcursos(): Observable<any> {
+    return this.http.get(`${this.apiUrl}s`);
+  }
+
   get concursoId(): number {
     return this.id.value
   }
