@@ -3,6 +3,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { Candidato } from 'src/app/models/candidato.model';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-respostas',
@@ -16,11 +17,16 @@ export class RespostasComponent implements AfterViewInit {
   constructor(
     private service: ConcursoService,
     private toast: ToastService,
-    private splashScreen: SplashScreenService
+    private splashScreen: SplashScreenService,
+    private router: Router
   ) { }
 
   ngAfterViewInit(): void {
       this.getCandidatos();
+  }
+
+  newAnswer(): void {
+    this.router.navigate([`/admin/concurso/${this.service.concursoId}/files`]);
   }
 
   getCandidatos(): void {

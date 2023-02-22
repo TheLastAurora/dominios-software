@@ -39,6 +39,10 @@ export class ConcursoService {
     return this.http.get(`${this.apiUrl}s`);
   }
 
+  sendAnswersFile(formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${this.concursoId}/files`, formData, {'headers': this.authService.getRequestHeaders()});
+  }
+
   get concursoId(): number {
     return this.id.value
   }

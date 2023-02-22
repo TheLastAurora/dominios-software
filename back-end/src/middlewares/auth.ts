@@ -15,16 +15,16 @@ class Auth {
         try {
             const token = req.headers.authorization?.replace('Bearer ', '');
             if(!token)
-                res.status(500).json({message: 'Token missing'});
+                res.status(500).json({message: 'Token não enviado'});
             else
                 jwt.verify(token, `${process.env.API_SECRET}`, (error, decoded)=>{
                     if(error)
-                        res.status(403).json({message: 'unauth'});
+                        res.status(403).json({message: 'Não autenticado'});
                     else
                         next();
                 });
         } catch (error) {
-            res.status(500).json({message: 'Error'});
+            res.status(500).json({message: 'Erro ao processar requisição'});
         }
     }
 

@@ -18,7 +18,7 @@ export class App {
     }
 
     private middlewares(): void {
-        this.express.use(express.json());
+        this.express.use(express.json({limit: '50mb'}));
         this.express.use((req: Request, res: Response, next: NextFunction) => {
             res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Credentials", "true");
