@@ -1,3 +1,4 @@
+import { RankingComponent } from './templates/public/results/ranking/ranking.component';
 import { FileFormComponent } from './templates/admin/concursos/concurso-form/respostas/file-form/file-form.component';
 import { RespostasFormComponent } from './templates/admin/concursos/concurso-form/respostas/respostas-form/respostas-form.component';
 import { GabaritosFormComponent } from './templates/admin/concursos/concurso-form/gabaritos/gabaritos-form/gabaritos-form.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'public', component: PublicComponent, children: [
     {path: 'home', component: HomeComponent},
     {path: 'results', component: ResultsComponent},
+    {path: 'ranking', component: RankingComponent},
     {path: '', redirectTo: 'home', pathMatch: 'full'}
   ]},
   {path: 'auth', component: AuthComponent, children: [

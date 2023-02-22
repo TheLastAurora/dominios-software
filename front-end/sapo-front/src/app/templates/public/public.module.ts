@@ -5,6 +5,7 @@ import { PublicComponent } from './public.component';
 import { HomeComponent } from './home/home.component';
 import { ResultsComponent } from './results/results.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RankingComponent } from './results/ranking/ranking.component';
 
 
 
@@ -12,7 +13,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   declarations: [
     PublicComponent,
     HomeComponent,
-    ResultsComponent
+    ResultsComponent,
+    RankingComponent
   ],
   imports: [
     CommonModule,

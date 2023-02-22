@@ -61,6 +61,23 @@ class ConcursoController {
         }
     }
 
+    public async readConcludedConcursoCandidatos(req: Request, res: Response): Promise<Response>{
+        try{
+            const id: number = Number(req.params.id);
+            const candidatos: Candidato[] = await prisma.candidato.findMany({
+                where: {
+                    concursoID: id,
+                },
+                orderBy: {
+                    nota: 'desc'
+                }
+            });
+            return res.status(200).json(candidatos);
+        } catch(error) {
+            return res.status(500).json({message: 'Erro ao processar requisição'});
+        }
+    }
+
     public async readConcursoGabaritos(req: Request, res: Response): Promise<Response>{
         try{
             const id: number = Number(req.params.id);
@@ -81,7 +98,9 @@ class ConcursoController {
                 where: {
                     candidatos: {
                         every: {
-                            nota: 1
+                            nota: {
+                                gt: 1
+                            }
                         }
                     }
                 }

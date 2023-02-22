@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,8 +8,20 @@ import { Component } from '@angular/core';
 })
 export class PublicHeaderComponent {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  
+  goToHome(): void {
+    this.router.navigate(['public/home']);
+  }
+
+  goToResults(): void {
+    this.router.navigate(['public/results']);
+  }
+
+  goToAdmin(): void {
+    this.router.navigate(['auth']);
+  }
 
 }

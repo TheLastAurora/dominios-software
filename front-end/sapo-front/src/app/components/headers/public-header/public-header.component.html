@@ -7,9 +7,9 @@
     </div>
     <nav>
         <ul>
-            <li><app-text-button text="Home"></app-text-button></li>
-            <li><app-text-button text="Resultados"></app-text-button></li>
-            <li><app-text-button text="Sobre"></app-text-button></li>
+            <li><app-text-button text="Home" (event)="goToHome()"></app-text-button></li>
+            <li><app-text-button text="Resultados" (event)="goToResults()"></app-text-button></li>
+            <li><app-text-button text="Administração" (event)="goToAdmin()"></app-text-button></li>
         </ul>
     </nav>
 </header>
