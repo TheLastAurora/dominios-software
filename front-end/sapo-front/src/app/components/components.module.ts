@@ -13,6 +13,7 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { ToasterComponent } from './toaster/toaster.component';
+import { AvatarModule } from './avatar/avatar.module';
 
 
 
@@ -21,11 +22,11 @@ import { ToasterComponent } from './toaster/toaster.component';
     ToastComponent,
     SnackbarComponent,
     TooltipComponent,
-    AvatarComponent,
     SplashScreenComponent,
     ToasterComponent
   ],
   imports: [
+    AvatarModule,
     CommonModule,
     CardsModule,
     ButtonsModule,
@@ -35,7 +36,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     ListsModule
   ],
   exports: [
-    AvatarComponent,
+    AvatarModule,
     CommonModule,
     ButtonsModule,
     FootersModule,

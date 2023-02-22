@@ -1,0 +1,19 @@
+@import '../../../../styles/colors.scss';
+
+label {
+    display: block;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    resize: none;
+    border: 0;
+    outline: 0;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 0 6px $light-grey;
+}

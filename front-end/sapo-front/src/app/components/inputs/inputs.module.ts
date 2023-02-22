@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextInputComponent } from './text-input/text-input.component';
 import { InputComponent } from './input/input.component';
+import { TextAreaInputComponent } from './text-area-input/text-area-input.component';
+import { CharInputComponent } from './char-input/char-input.component';
 
 
 
 @NgModule({
   declarations: [
     TextInputComponent,
-    InputComponent
+    InputComponent,
+    TextAreaInputComponent,
+    CharInputComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +21,9 @@ import { InputComponent } from './input/input.component';
   ],
   exports: [
     TextInputComponent,
-    InputComponent
+    InputComponent,
+    TextAreaInputComponent,
+    CharInputComponent
   ]
 })
 export class InputsModule { }

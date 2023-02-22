@@ -1,4 +1,41 @@
-<div>
+<div class="filter">
+    <h5>
+        Filtrar por
+    </h5>
+    <div>
+        <div class="fields">
+            <div>
+                <label>ID</label>
+                <input type="text" [formControl]="id">
+            </div>
+            <div *ngIf="type == 'concurso'">
+                <label>Cargo</label>
+                <input type="text" [formControl]="cargo">
+            </div>
+            <div *ngIf="type == 'concurso'">
+                <label>Empresa</label>
+                <input type="text" [formControl]="empresa">
+            </div>
+            <div *ngIf="type == 'gabarito'">
+                <label>Tipo de Prova</label>
+                <input type="text" [formControl]="tipo">
+            </div>
+            <div *ngIf="type == 'candidato'">
+                <label>Nome</label>
+                <input type="text" [formControl]="nome">
+            </div>
+            <div *ngIf="type == 'candidato'">
+                <label>CPF</label>
+                <input type="text" [formControl]="cpf">
+            </div>
+        </div>
+        <div class="actions">
+            <app-flat-button buttonText="LIMPAR"></app-flat-button>
+            <app-flat-button buttonText="FILTRAR"></app-flat-button>
+        </div>
+    </div>
+</div>
+<div class="list">
     <ul>
         <li class="id">ID</li>
         <li *ngIf="type == 'concurso'" class="name">Cargo</li>

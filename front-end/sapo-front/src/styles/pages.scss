@@ -1,11 +1,26 @@
 @import './colors.scss';
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+  
+*::-webkit-scrollbar-track {
+    background: #edeced;
+}
+  
+*::-webkit-scrollbar-thumb {
+    background-color: #edeced;
+    border-radius: 20px;
+    border: 2px solid #c1c1c1;
+}
+
 section.form-section {
-    width: 100%;
-    margin: 48px 12px;
+    width: calc(100% - 16px);
+    margin: 48px 8px;
     padding: 24px;
     display: flex;
-    gap: 48px;
+    flex-wrap: wrap;
+    gap: 32px;
     position: relative;
     border: 2px solid $light-grey;
     border-radius: 8px;

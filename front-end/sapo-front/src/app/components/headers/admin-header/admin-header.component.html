@@ -5,5 +5,8 @@
             SAPO
         </h3>
     </div>
-    <app-square-button icon="logout" (event)="logout()"></app-square-button>
+    <div>
+        <app-avatar [username]="username"></app-avatar>
+        <app-square-button icon="logout" (event)="logout()"></app-square-button>
+    </div>
 </header>

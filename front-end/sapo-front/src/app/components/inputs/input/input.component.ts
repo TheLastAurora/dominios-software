@@ -13,6 +13,9 @@ export class InputComponent {
   @Input()
   value!: string;
 
+  @Input()
+  type?: string;
+
   constructor() { }
 
 }

@@ -16,6 +16,7 @@ router.get('/user/:id', Auth.verify, UserController.read);
 router.put('/user/:id', Auth.verify, UserController.update);
 router.delete('/user/:id', Auth.verify, UserController.delete);
 router.post('/login', UserController.authenticate);
+router.put('/user', Auth.verify, UserController.getCurrentUser);
 
 //Candidato Routes
 router.post('/candidato', Auth.verify, CandidatoController.create);
@@ -35,6 +36,7 @@ router.get('/concurso/:id', Auth.verify, ConcursoController.read);
 router.get('/concurso', Auth.verify, ConcursoController.readAll);
 router.get('/concurso/:id/candidatos', Auth.verify, ConcursoController.readConcursoCandidatos);
 router.get('/concurso/:id/gabaritos', Auth.verify, ConcursoController.readConcursoGabaritos);
+router.get('/concursos', ConcursoController.readConcludedConcursos);
 router.put('/concurso/:id', Auth.verify, ConcursoController.update);
 router.delete('/concurso/:id', Auth.verify, ConcursoController.delete);
 
