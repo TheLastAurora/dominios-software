@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class TextInputComponent {
 
   @Input()
-  control!: FormControl
+  control!: FormControl;
 
   @Input()
   name!: string;

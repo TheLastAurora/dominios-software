@@ -1,5 +1,5 @@
 import { GabaritoService } from './../../../../../../services/gabarito.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, AfterViewInit } from '@angular/core';
 import { ToastService } from 'src/app/services/toast.service';
 import { SplashScreenService } from 'src/app/services/splash-screen.service';
@@ -13,6 +13,8 @@ import { ConcursoService } from 'src/app/services/concurso.service';
   styleUrls: ['./gabaritos-form.component.scss']
 })
 export class GabaritosFormComponent implements AfterViewInit {
+
+  options: string[] = ['A', 'B', 'C', 'D', 'E'];
 
   gabaritoForm!: FormGroup;
 
@@ -28,7 +30,8 @@ export class GabaritosFormComponent implements AfterViewInit {
     private concursoService: ConcursoService,
     private toast: ToastService,
     private splashScreen: SplashScreenService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngAfterViewInit(): void {
@@ -40,8 +43,8 @@ export class GabaritosFormComponent implements AfterViewInit {
     return String(this.gabarito?.tipo);
   }
 
-  get respostas(): string {
-    return String(this.gabarito?.respostas);
+  get respostas(): JSON | undefined {
+    return this.gabarito?.respostas;
   }
 
   get updatedAt(): string {
@@ -89,6 +92,29 @@ export class GabaritosFormComponent implements AfterViewInit {
           this.splashScreen.stop();
         }
       })
+  }
+
+  print(): void {
+    console.log(this.tipoControl);
+    console.log(this.respostasControl);
+  }
+
+  submit(): void {
+    this.splashScreen.start();
+    this.gabarito!.tipo = this.tipoControl.value;
+    this.gabarito!.respostas = this.respostasControl.value;
+    this.service.create(this.gabarito as Gabarito).subscribe({
+      next: data => {
+        this.toast.success(data.message);
+        this.splashScreen.stop();
+        this.router.navigate([`admin/concurso/${this.concursoService.concursoId}/gabaritos`]);
+      }
+      ,
+      error: error => {
+        this.toast.error(error.error.message);
+        this.splashScreen.stop();
+      }
+    })
   }
 
 }

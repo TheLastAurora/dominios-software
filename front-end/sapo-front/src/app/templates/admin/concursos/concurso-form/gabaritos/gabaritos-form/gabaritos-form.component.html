@@ -26,4 +26,16 @@
     <h3>
         Gabarito {{gabaritoId}}
     </h3>
+    <form [formGroup]="gabaritoForm">
+        <div>
+            <label>Tipo de prova:</label>
+            <select [formControl]="tipoControl">
+                <option *ngFor="let option of options" [value]="option">{{option}}</option>
+            </select>
+        </div>
+        <textarea rows="20" formControlName="respostasControl" (keyup)="print()"></textarea>
+    </form>
+    <div>
+        <app-flat-button buttonText="Adicionar" (event)="submit()"></app-flat-button>
+    </div>
 </ng-container>
