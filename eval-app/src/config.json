@@ -4,7 +4,7 @@
         "version": 1.1
     },
     "path": {
-        "source_data_path": "C:\\Programacao\\RESPOSTAS\\",
+        "source_data_path": "C:\\Programacao\\dominios-software\\eval-app\\cartoes",
         "output_data_path": "",
         "spark.driver.extraClassPath": "C:/Users/vitor/AppData/Roaming/DBeaverData/drivers/maven/maven-central/org.postgresql/postgresql-42.2.25.jar",
         "tesseract_path": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"

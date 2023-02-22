@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import prisma from "../database/prisma";
 import { Candidato } from "../models/candidato.model";
 
+
 class CandidatoController {
 
-    public async create(req: Request, res: Response): Promise<Response>{
+    public async create(req: Request, res: Response): Promise<Response> {
         try {
             const candidato: Candidato = req.body;
             const existByTaxId: any = await prisma.candidato.findUnique({
@@ -12,15 +13,15 @@ class CandidatoController {
                     cpf: candidato.cpf,
                 },
             });
-            if(existByTaxId)
-                return res.status(400).json({message: 'Candidato Tax ID already registered'});
+            if (existByTaxId)
+                return res.status(400).json({ message: 'Candidato Tax ID already registered' });
             const existByDocumentId: any = await prisma.candidato.findUnique({
                 where: {
                     rg: candidato.rg,
                 },
             });
-            if(existByDocumentId)
-                return res.status(400).json({message: 'Candidato Document ID already registered'});
+            if (existByDocumentId)
+                return res.status(400).json({ message: 'Candidato Document ID already registered' });
             candidato.data_nascimento = new Date(candidato.data_nascimento);
             candidato.data_expedicao = new Date(candidato.data_expedicao);
             const newCandidato = await prisma.candidato.create({
@@ -28,7 +29,7 @@ class CandidatoController {
             });
             await prisma.concurso.update({
                 where: {
-                    id: candidato.concursoID 
+                    id: candidato.concursoID
                 },
                 data: {
                     candidatos: {
@@ -38,13 +39,13 @@ class CandidatoController {
                     },
                 },
             })
-            return res.status(201).json({message: 'Candidato created'});
+            return res.status(201).json({ message: 'Candidato created' });
         } catch (error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({ message: 'Error' });
         }
     }
 
-    public async read(req: Request, res: Response): Promise<Response>{
+    public async read(req: Request, res: Response): Promise<Response> {
         try {
             const id: number = Number(req.params.id);
             const candidato = await prisma.candidato.findUnique({
@@ -52,15 +53,15 @@ class CandidatoController {
                     id: id,
                 },
             });
-            if(!candidato)
-                return res.status(400).json({message: 'Candidato not found'});
+            if (!candidato)
+                return res.status(400).json({ message: 'Candidato not found' });
             return res.status(200).json(candidato);
         } catch (error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({ message: 'Error' });
         }
     }
 
-    public async update(req: Request, res: Response): Promise<Response>{
+    public async update(req: Request, res: Response): Promise<Response> {
         try {
             const id: number = Number(req.params.id);
             const candidato = await prisma.candidato.findUnique({
@@ -68,23 +69,23 @@ class CandidatoController {
                     id: id,
                 },
             });
-            if(!candidato)
-                return res.status(400).json({message: 'User not found'});
+            if (!candidato)
+                return res.status(400).json({ message: 'User not found' });
             const candidatoData: Candidato = req.body;
             const existByTaxId: any = await prisma.candidato.findUnique({
                 where: {
                     cpf: candidatoData.cpf,
                 },
             });
-            if(existByTaxId && existByTaxId.cpf != candidatoData.cpf)
-                return res.status(400).json({message: 'Candidato Tax ID already registered'});
+            if (existByTaxId && existByTaxId.cpf != candidatoData.cpf)
+                return res.status(400).json({ message: 'Candidato Tax ID already registered' });
             const existByDocumentId: any = await prisma.candidato.findUnique({
                 where: {
                     rg: candidatoData.rg,
                 },
             });
-            if(existByDocumentId && existByDocumentId.rg != candidatoData.rg)
-                return res.status(400).json({message: 'Candidato Document ID already registered'});
+            if (existByDocumentId && existByDocumentId.rg != candidatoData.rg)
+                return res.status(400).json({ message: 'Candidato Document ID already registered' });
             candidatoData.data_nascimento = new Date(candidato.data_nascimento);
             candidatoData.data_expedicao = new Date(candidato.data_expedicao);
             await prisma.candidato.update({
@@ -93,13 +94,13 @@ class CandidatoController {
                 },
                 data: candidatoData
             });
-            return res.status(200).json({message: 'Candidato updated'});
+            return res.status(200).json({ message: 'Candidato updated' });
         } catch (error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({ message: 'Error' });
         }
     }
 
-    public async delete(req: Request, res: Response): Promise<Response>{
+    public async delete(req: Request, res: Response): Promise<Response> {
         try {
             const id: number = Number(req.params.id);
             const candidato = await prisma.candidato.findUnique({
@@ -107,17 +108,24 @@ class CandidatoController {
                     id: id,
                 },
             });
-            if(!candidato)
-                return  res.status(400).json({message: 'Candidato not found'});
+            if (!candidato)
+                return res.status(400).json({ message: 'Candidato not found' });
             await prisma.candidato.delete({
                 where: {
                     id: id,
                 },
             });
-            return res.status(200).json({message: 'Candidato deleted'});
+            return res.status(200).json({ message: 'Candidato deleted' });
         } catch (error) {
-            return res.status(500).json({message: 'Error'});
+            return res.status(500).json({ message: 'Error' });
         }
+    }
+
+    public async sendFile(req: Request, res: Response): Promise<Response> {
+        const file = req.file;
+        if (file)
+            return res.status(200).json({ message: 'File uploaded' });
+        return res.status(500).json({ message: 'Error' });
     }
 
 }
