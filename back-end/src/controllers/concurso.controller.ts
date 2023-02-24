@@ -97,7 +97,7 @@ class ConcursoController {
             const concursos = await prisma.concurso.findMany({
                 where: {
                     candidatos: {
-                        every: {
+                        some: {
                             nota: {
                                 gt: 1
                             }

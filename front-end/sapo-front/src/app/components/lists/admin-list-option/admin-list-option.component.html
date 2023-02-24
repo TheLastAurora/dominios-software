@@ -17,7 +17,7 @@
     <li *ngIf="type == 'candidato'" class="date">
         {{data.cpf}}
     </li>
-    <li *ngIf="type == 'candidato'" class="nota">
+    <li *ngIf="type == 'candidato' || type == 'ranks'" class="nota">
         {{data.nota}}
     </li>
     <li class="date" *ngIf="type != 'concursos'">

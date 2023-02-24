@@ -46,9 +46,9 @@
         <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">Empresa</li>
         <li *ngIf="type == 'gabarito'" class="name">Prova</li>
         <li *ngIf="type == 'gabarito'" class="name"></li>
-        <li *ngIf="type == 'candidato'" class="name">Nome</li>
+        <li *ngIf="type == 'candidato' || type == 'ranks'" class="name">Nome</li>
         <li *ngIf="type == 'candidato'" class="date">CPF</li>
-        <li *ngIf="type == 'candidato'" class="nota">Nota</li>
+        <li *ngIf="type == 'candidato' || type == 'ranks'" class="nota">Nota</li>
         <li class="date" *ngIf="type != 'concursos'">Data de Criação</li>
     </ul>
     <ng-container *ngFor="let option of data">
