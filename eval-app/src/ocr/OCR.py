@@ -1,10 +1,9 @@
 from PIL import Image
-from skimage.transform import rotate
-from deskew import determine_skew
 import pytesseract
 import numpy as np
 from pathlib import Path
 import cv2
+
 
 pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 

@@ -1,0 +1,13 @@
+@import '../../../../../../../styles/colors.scss';
+
+div {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    app-text-area-input {
+        width: 100%;
+    }
+}

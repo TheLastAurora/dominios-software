@@ -1,0 +1,14 @@
+<div>
+    <header>
+        <h4>SAPO</h4>
+        <h6>Cadastre seu usuário</h6>
+    </header>
+    <form [formGroup]="userForm">
+        <h5>Insira seus dados</h5>
+        <app-text-input name="Nome" type="text" [control]="nomeControl" ></app-text-input>
+        <app-text-input name="Login" type="text" [control]="loginControl" ></app-text-input>
+        <app-text-input name="Senha" type="password" [control]="senhaControl" ></app-text-input>
+        <app-flat-button buttonText="Cadastrar" (event)="submit()"></app-flat-button>
+    </form>
+    <app-text-button text="Já possuo cadastro" (event)="goToLogin()"></app-text-button>
+</div>

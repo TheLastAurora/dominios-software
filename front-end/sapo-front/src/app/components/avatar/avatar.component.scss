@@ -1,0 +1,21 @@
+div {
+    width: 112px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        cursor: pointer;
+        &:hover {
+            outline: 2px green solid;
+        }
+    };
+    p {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: white;
+    };
+}

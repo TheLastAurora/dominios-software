@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Candidato {
+  id              Int      @id @default(autoincrement())
+  nome            String   
+  cpf             String   @unique
+  genero          Genero
+  nome_mae        String
+  nome_pai        String
+  data_nascimento DateTime
+  rg              String   @unique
+  data_expedicao  DateTime
+  logradouro      String
+  numero          String
+  complemento     String
+  bairro          String
+  cep             String
+  cod_municipio   String
+  uf              Uf
+  email           String
+  telefone        String
+  concursoID      Int
+  concurso        Concurso @relation(fields: [concursoID], references: [id], onDelete: Cascade)
+  nota            Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("tb_candidato")
+}
+
+model Concurso {
+  id          Int         @id @default(autoincrement())
+  nome        String
+  cargo       String
+  vagas_ac    Int
+  vagas_pd    Int
+  homologacao DateTime
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  gabaritos   Gabarito[]
+  candidatos  Candidato[]
+
+  @@map("tb_concurso")
+}
+
+model Gabarito {
+  id         Int      @id @default(autoincrement())
+  concursoId Int
+  concurso   Concurso @relation(fields: [concursoId], references: [id], onDelete: Cascade)
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  tipo       String  @db.Char(1)
+  respostas  Json?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("tb_gabarito")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  nome      String
+  login     String     @unique
+  senha     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  gabarito  Gabarito[]
+
+  @@map("tb_user")
+}
+
+enum Genero {
+  M
+  F
+}
+
+enum Uf {
+  AC
+  AL
+  AP
+  AM
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MT
+  MS
+  MG
+  PA
+  PB
+  PR
+  PE
+  PI
+  RJ
+  RN
+  RS
+  RO
+  RR
+  SC
+  SP
+  SE
+  TO
+  SN
+}

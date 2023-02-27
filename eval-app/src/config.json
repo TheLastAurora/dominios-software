@@ -1,0 +1,50 @@
+{
+    "global": {
+        "app_name": "SAPO",
+        "version": 1.1
+    },
+    "path": {
+        "source_data_path": "C:\\Programacao\\dominios-software\\eval-app\\cartoes\\",
+        "output_data_path": "",
+        "spark.driver.extraClassPath": "C:/Users/vitor/AppData/Roaming/DBeaverData/drivers/maven/maven-central/org.postgresql/postgresql-42.2.25.jar",
+        "tesseract_path": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+    },
+    "connection": {
+        "input": {
+            "agent": "PostgreSQL",
+            "method": "JDBC",
+            "properties": {
+                "server": {
+                    "url": "jdbc:postgresql://localhost:5432/main",
+                    "host": "",
+                    "port": "",
+                    "database": "main",
+                    "tables": [
+                        "tb_gabarito",
+                        "tb_concurso"
+                    ]
+                },
+                "auth": {
+                    "user": "postgres",
+                    "password": "123"
+                }
+            }
+        },
+        "output": {
+            "agent": "PostgreSQL",
+            "method": "psycopg2",
+            "properties": {
+                "server": {
+                    "url": "",
+                    "host": "localhost",
+                    "port": "5432",
+                    "database": "main"
+                },
+                "auth": {
+                    "user": "postgres",
+                    "password": "123"
+                }
+            }
+        }
+    }
+}

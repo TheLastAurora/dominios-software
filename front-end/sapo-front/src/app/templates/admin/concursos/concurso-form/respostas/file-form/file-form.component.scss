@@ -1,0 +1,37 @@
+@import './../../../../../../../styles/colors.scss';
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    div {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        input {
+
+        }
+        button {
+            width: 200px;
+            padding: 8px 0;
+            background-color: $blue-dark;
+            color: white;
+            transition: 0.2s;
+            border: 2px $blue-dark solid;
+            border-radius: 4px;
+            font-size: 16px;
+            letter-spacing: 2.4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover {
+                background-color: $white;
+                color: $blue-dark;
+                transition: 0.2s;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<div class="filter">
+    <h5>
+        Filtrar por
+    </h5>
+    <div>
+        <div class="fields">
+            <div>
+                <label>ID</label>
+                <input type="text" [formControl]="id">
+            </div>
+            <div *ngIf="type == 'concurso' || type == 'concursos'">
+                <label>Cargo</label>
+                <input type="text" [formControl]="cargo">
+            </div>
+            <div *ngIf="type == 'concurso' || type == 'concursos'">
+                <label>Empresa</label>
+                <input type="text" [formControl]="empresa">
+            </div>
+            <div *ngIf="type == 'gabarito'">
+                <label>Tipo de Prova</label>
+                <input type="text" [formControl]="tipo">
+            </div>
+            <div *ngIf="type == 'candidato'">
+                <label>Nome</label>
+                <input type="text" [formControl]="nome">
+            </div>
+            <div *ngIf="type == 'candidato'">
+                <label>CPF</label>
+                <input type="text" [formControl]="cpf">
+            </div>
+            <div *ngIf="type == 'candidato'">
+                <label>Nota</label>
+                <input type="text" [formControl]="nota">
+            </div>
+        </div>
+        <div class="actions">
+            <app-flat-button buttonText="LIMPAR" (event)="clearFilter()"></app-flat-button>
+            <app-flat-button buttonText="FILTRAR" (event)="applyFilter()"></app-flat-button>
+        </div>
+    </div>
+</div>
+<div class="list">
+    <ul>
+        <li class="id">ID</li>
+        <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">Cargo</li>
+        <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">Empresa</li>
+        <li *ngIf="type == 'gabarito'" class="name">Prova</li>
+        <li *ngIf="type == 'gabarito'" class="name"></li>
+        <li *ngIf="type == 'candidato' || type == 'ranks'" class="name">Nome</li>
+        <li *ngIf="type == 'candidato'" class="date">CPF</li>
+        <li *ngIf="type == 'candidato' || type == 'ranks'" class="nota">Nota</li>
+        <li class="date" *ngIf="type != 'concursos'">Data de Criação</li>
+    </ul>
+    <ng-container *ngFor="let option of data">
+        <app-admin-list-option [data]="option" [type]="type" (event)="goToTab(option.id)"></app-admin-list-option>
+    </ng-container>
+</div>

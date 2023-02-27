@@ -1,0 +1,11 @@
+<div>
+    <h6>
+        {{label}}
+    </h6>
+    <p *ngIf="type != 'json'">
+        {{value}}
+    </p>
+    <p *ngIf="type == 'json'">
+        {{value | json}}
+    </p>
+</div>

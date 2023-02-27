@@ -1,0 +1,36 @@
+@import './../../../../styles/colors.scss';
+
+div {
+    width: 360px;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px $blue-default solid;
+    border-radius: 16px;
+    background-color: $white;
+    header {
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    form {
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 48px;
+        align-items: center;
+        h5 {
+            margin-bottom: 24px;
+        }
+        app-text-input {
+            margin-bottom: 18px
+        }
+        app-flat-button {
+            margin-top: 36px;
+        }
+    }
+}

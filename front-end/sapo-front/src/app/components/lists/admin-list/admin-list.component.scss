@@ -1,0 +1,81 @@
+@import '../../../../styles/colors.scss';
+
+div.list {
+    width: 100%;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 0 6px $light-grey;
+    ul {
+        padding: 10px 0;
+        list-style: none;
+        display: flex;
+        li {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-align: center;
+            &.id {
+                width: 10%;
+            }
+            &.name {
+                width: 30%;
+            }
+            &.nota {
+                width: 20%;
+            }
+            &.rank {
+                width: 45%;
+            }
+            &.date {
+                width: 20%;
+            }
+        }
+    }
+}
+
+div.filter {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 0 6px $light-grey;
+    h5 {
+        margin-bottom: 32px;
+    }
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        div.fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            label {
+                font-size: 18px;
+                letter-spacing: 1px;
+                display: block;
+            }
+            input {
+                width: 200px;
+                padding: 8px;
+                font-size: 16px;
+                letter-spacing: 1px;
+                border: 0;
+                border-bottom: 1px solid $light-grey;
+                transition: 0.2s;
+                &:focus {
+                    outline: 0;
+                    border-bottom: 1.5px solid $light-grey;
+                    transition: 0.1s;
+                }
+            }
+        }
+        div.actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-end;
+        }
+    }
+}

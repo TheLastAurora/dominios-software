@@ -1,0 +1,26 @@
+<ul (click)="submit()">
+    <li class="id">
+        {{data.id}}
+    </li>
+    <li *ngIf="type == 'concurso' || type == 'concursos'" [class]="type == 'concursos' ? 'rank' : 'name'">
+        {{data.cargo}}
+    </li>
+    <li *ngIf="type != 'gabarito'" [class]="type == 'concursos' ? 'rank' : 'name'">
+        {{data.nome}}
+    </li>
+    <li *ngIf="type == 'gabarito'" class="name">
+        {{data.tipo}}
+    </li>
+    <li *ngIf="type == 'gabarito'" class="name">
+        
+    </li>
+    <li *ngIf="type == 'candidato'" class="date">
+        {{data.cpf}}
+    </li>
+    <li *ngIf="type == 'candidato' || type == 'ranks'" class="nota">
+        {{data.nota}}
+    </li>
+    <li class="date" *ngIf="type != 'concursos'">
+        {{data.createdAt}}
+    </li>
+</ul>

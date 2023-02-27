@@ -1,0 +1,13 @@
+<div class="container">
+    <h4>
+        Adicionar arquivo de envio
+    </h4>
+    <h6>
+        O arquivo enviado deve estar no formato .zip.
+        <br>Devem estar contidos cartões-respostas.
+    </h6>
+    <div>
+        <input type="file" (change)="selectImage($event)">
+        <button type="button" (click)="submit()">SALVAR</button>
+    </div>
+</div>

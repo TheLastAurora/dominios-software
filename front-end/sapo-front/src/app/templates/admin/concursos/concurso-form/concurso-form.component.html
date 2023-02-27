@@ -1,0 +1,13 @@
+<div>
+    <h2>Concurso {{concursoId}}</h2>
+    <nav>
+        <ul>
+            <li><app-flat-button buttonText="Detalhes" (event)="goToDetails()"></app-flat-button></li>
+            <li><app-flat-button buttonText="Gabaritos" (event)="goToGabaritos()"></app-flat-button></li>
+            <li><app-flat-button buttonText="Candidatos" (event)="goToRespostas()"></app-flat-button></li>
+        </ul>
+    </nav>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+</div>

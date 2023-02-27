@@ -1,0 +1,46 @@
+@import './fonts.scss';
+
+* {
+    box-sizing: border-box;
+    font-family: $font-default;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-size: 96px;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 36px;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 32px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+h4 {
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+h6 {
+    font-size: 12px;
+    letter-spacing: 0.7px;
+    opacity: 0.3;
+}

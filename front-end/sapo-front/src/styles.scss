@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use './styles/colors.scss';
+@use './styles/fonts.scss';
+@use './styles/html.scss';
+@use './styles/pages.scss';
+
+app-root {   
+    z-index: 1; 
+} 
